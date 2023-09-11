@@ -12,7 +12,7 @@ func _physics_process(delta):
 		velocity.y = -speed
 		$AnimatedSprite.play("Go Up")
 		
-	elif Input.is_action_pressed("go_left"):
+	if Input.is_action_pressed("go_left"):
 		velocity.x = -speed
 		$AnimatedSprite.play("Go Side")
 		$AnimatedSprite.flip_h = true

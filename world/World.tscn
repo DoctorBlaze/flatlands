@@ -7,3 +7,6 @@
 [node name="MainCharacter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 476, 268 )
 scale = Vector2( 3, 3 )
+
+[node name="MainTilemap" type="TileMap" parent="."]
+format = 1
