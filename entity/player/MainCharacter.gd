@@ -1,4 +1,4 @@
-extends "res://scripts/Entity.gd"
+extends "res://entity/Entity.gd"
 
 func _physics_process(delta):
 
