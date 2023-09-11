@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://asset/texture/player/sprites/playerFront.png" type="Texture" id=1]
+[ext_resource path="res://asset/texture/player/sprites/playerSide.png" type="Texture" id=2]
+[ext_resource path="res://asset/texture/player/sprites/playerBack.png" type="Texture" id=3]
+[ext_resource path="res://scripts/MainCharacter.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 16 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Go Down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Go Side",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Go Up",
+"speed": 5.0
+} ]
+
+[node name="MainCharacter" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Go Down"
