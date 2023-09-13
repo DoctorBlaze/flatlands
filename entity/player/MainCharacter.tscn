@@ -18,7 +18,7 @@
 [ext_resource path="res://asset/texture/player/animations/dash5.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 16 )
+extents = Vector2( 5, 5.5 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -60,19 +60,22 @@ animations = [ {
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -16 )
 frames = SubResource( 1 )
 animation = "Idle"
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, -16 )
 current = true
 smoothing_enabled = true
 
 [node name="dashSprite" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 1, 1, 0.501961 )
-position = Vector2( 0, 15 )
-z_index = 2
+position = Vector2( 0, -2 )
+z_index = 1
 frames = SubResource( 3 )
 animation = "none"

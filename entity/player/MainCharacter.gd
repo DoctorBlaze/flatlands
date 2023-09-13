@@ -42,7 +42,7 @@ func _physics_process(delta):
 	
 	
 func init_animations(velocity):
-
+	YSort 
 	if velocity.y > 0:
 		$AnimatedSprite.play("Go Down")
 		return
