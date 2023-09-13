@@ -3,22 +3,26 @@ extends "res://entity/Entity.gd"
 #after using dash, player gets 4x faster for a short period of time
 var dash_boost = 1
 var dash_cooldown = 0
+var selected_plant_index = -1
+
+func _ready():
+	print(get_parent().name)
 
 func _physics_process(delta):
 	#movement _____________________________________________________________
 	var velocity = Vector2()
 		
 	if Input.is_action_pressed("go_left"):
-		velocity.x = -speed
+		velocity.x = -1
 		
 	elif Input.is_action_pressed("go_right"):
-		velocity.x = speed
+		velocity.x = 1
 		
 	if Input.is_action_pressed("go_down"):
-		velocity.y = speed
+		velocity.y = 1
 		
 	elif Input.is_action_pressed("go_up"):
-		velocity.y = -speed
+		velocity.y = -1
 
 	#dashes _____________________________________________________________
 	if Input.is_action_just_pressed("dash") and dash_cooldown <= 0:
@@ -26,6 +30,7 @@ func _physics_process(delta):
 		dash_boost = 4
 		dash_cooldown = 4
 	
+	velocity = velocity.normalized()*speed
 	#decrease dash boost when time passes
 	if dash_boost > 1:
 		velocity = velocity * dash_boost
@@ -60,3 +65,26 @@ func init_animations(velocity):
 		return
 	else: 
 		$AnimatedSprite.play("Idle")
+		
+func _process(delta):
+	var player_dir = get_local_mouse_position()/8
+	if(player_dir.length() > 6): 
+		$AskSymbol.visible = false
+		selected_plant_index = -1
+		return
+	var final_loc = Vector2(int(position.x/32),int(position.y/32)) + player_dir
+	var res = get_parent().get_plant_at(final_loc.x+2,final_loc.y+2)
+	if(res.x != -1):
+		$AskSymbol.visible = true
+		$AskSymbol.position = get_local_mouse_position()
+		selected_plant_index = res.x
+	else:
+		$AskSymbol.visible = false
+		selected_plant_index = -1
+		
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("get_plant_info"):
+		print(selected_plant_index)
+		
+
+

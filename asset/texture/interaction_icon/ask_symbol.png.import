@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cinnarod.png-fdaeb45d029c64224eb32338a5ebc295.stex"
+path="res://.import/ask_symbol.png-32b86d87aa17de48fbf29f4e7df5c6f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/tile/cinnarod.png"
-dest_files=[ "res://.import/cinnarod.png-fdaeb45d029c64224eb32338a5ebc295.stex" ]
+source_file="res://asset/texture/interaction_icon/ask_symbol.png"
+dest_files=[ "res://.import/ask_symbol.png-32b86d87aa17de48fbf29f4e7df5c6f6.stex" ]
 
 [params]
 

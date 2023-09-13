@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://entity/player/MainCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/World.gd" type="Script" id=2]
 [ext_resource path="res://asset/texture/tile/grassTileset.png" type="Texture" id=3]
 [ext_resource path="res://projectile/player_projectile.tscn" type="PackedScene" id=4]
-[ext_resource path="res://asset/texture/tile/cinnarod.png" type="Texture" id=5]
+[ext_resource path="res://asset/texture/plant/cinnarod.png" type="Texture" id=5]
 [ext_resource path="res://asset/texture/tile/rocks.png" type="Texture" id=6]
 [ext_resource path="res://asset/texture/tile/smallGrass0.png" type="Texture" id=7]
 [ext_resource path="res://asset/texture/tile/smallGrass1.png" type="Texture" id=8]
@@ -12,6 +12,7 @@
 [ext_resource path="res://asset/texture/tile/pathTileset.png" type="Texture" id=10]
 [ext_resource path="res://asset/texture/tile/pathDecorations.png" type="Texture" id=11]
 [ext_resource path="res://asset/texture/plant/emberwood.png" type="Texture" id=12]
+[ext_resource path="res://asset/texture/plant/bush.png" type="Texture" id=13]
 
 [sub_resource type="TileSet" id=3]
 0/name = "pathTileset.png 0"
@@ -466,6 +467,70 @@
 26/shapes = [  ]
 26/z_index = 0
 
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 30.6994, 63.4915, 23.4898, 63.4915, 23.4898, 56.747, 30.6994, 56.747 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 18.7121, 16.927, 5.58977, 16.927, 5.58977, 11.9921, 18.7121, 11.9921 )
+
+[sub_resource type="TileSet" id=4]
+0/name = "emberwood.png 0"
+0/texture = ExtResource( 12 )
+0/tex_offset = Vector2( -23.282, -60 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 55, 77 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 5 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "cinnarod.png 1"
+1/texture = ExtResource( 5 )
+1/tex_offset = Vector2( 0, -14 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 8, 17 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "bush.png 2"
+2/texture = ExtResource( 13 )
+2/tex_offset = Vector2( -13, -15 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 1, 25, 22 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 6 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+
 [node name="World" type="YSort"]
 script = ExtResource( 2 )
 
@@ -478,7 +543,7 @@ tile_data = PoolIntArray( 524305, 0, 327686, 524309, 0, 327684, 524310, 0, 32768
 
 [node name="MainMap" type="TileMap" parent="."]
 scale = Vector2( 4, 4 )
-z_index = -1
+z_index = -2
 tile_set = SubResource( 1 )
 cell_size = Vector2( 8, 8 )
 format = 1
@@ -486,37 +551,29 @@ tile_data = PoolIntArray( 5, 0, 262148, 6, 0, 131075, 7, 0, 131075, 8, 0, 131075
 
 [node name="SmallDecorations" type="TileMap" parent="."]
 scale = Vector2( 4, 4 )
+z_index = -1
 tile_set = SubResource( 2 )
 cell_size = Vector2( 8, 8 )
+cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 65551, 17, 0, 65556, 18, 0, 131096, 0, 0, 196625, 16, 0, 262154, 16, 0, 327700, 1, 0, 327708, 7, 0, 393233, 17, 0, 393241, 5, 0, 458779, 3, 0, 524313, 4, 0, 524316, 9, 0, 589842, 2, 0, 655369, 13, 0, 655383, 16, 0, 720903, 14, 0, 720908, 25, 0, 720910, 17, 0, 720915, 20, 0, 786453, 22, 0, 786461, 18, 0, 851990, 21, 0, 851992, 0, 0, 917523, 16, 0, 983065, 24, 0, 1114137, 16, 0, 1179670, 22, 0 )
+tile_data = PoolIntArray( -524219, 19, 0, 65551, 17, 0, 65556, 18, 0, 131096, 0, 0, 196625, 16, 0, 262154, 16, 0, 327700, 1, 0, 327708, 7, 0, 393233, 17, 0, 393241, 5, 0, 458779, 3, 0, 524313, 4, 0, 524316, 9, 0, 589842, 2, 0, 655369, 13, 0, 655383, 16, 0, 720903, 14, 0, 720908, 25, 0, 720910, 17, 0, 720915, 20, 0, 786453, 22, 0, 786461, 18, 0, 851990, 21, 0, 851992, 0, 0, 917523, 16, 0, 983065, 24, 0, 1114137, 16, 0, 1179670, 22, 0 )
+
+[node name="Plants" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+z_index = 1
+z_as_relative = false
+tile_set = SubResource( 4 )
+cell_size = Vector2( 8, 8 )
+cell_tile_origin = 1
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 262154, 2, 0, 589849, 0, 0, 720895, 1, 0, 851995, 2, 0, 983058, 1, 0, 1114123, 0, 0, 1114127, 1, 0, 1245196, 1, 0, 1376255, 1, 0, 1310728, 2, 0, 1441819, 0, 0, 1966080, 1, 0 )
 
 [node name="playerProjectile" parent="." instance=ExtResource( 4 )]
 position = Vector2( -380, 273 )
+z_index = 1
 
 [node name="MainCharacter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 476, 268 )
 scale = Vector2( 3, 3 )
-z_index = 1
 z_as_relative = false
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 339, 270 )
-scale = Vector2( 4, 4 )
-z_index = 1
-texture = ExtResource( 5 )
-offset = Vector2( 0, -8 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 741, 173 )
-scale = Vector2( 4, 4 )
-z_index = 1
-texture = ExtResource( 5 )
-offset = Vector2( 0, -8 )
-
-[node name="Emberwood" type="Sprite" parent="."]
-position = Vector2( 358, 640 )
-scale = Vector2( 4, 4 )
-z_index = 1
-texture = ExtResource( 12 )
-offset = Vector2( 0, -29.381 )
