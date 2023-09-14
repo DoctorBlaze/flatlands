@@ -18,5 +18,8 @@ func get_plant_at(x,y):
 					tmpi = i
 					tmpj = j
 	selected_plant=res
-
-	return Vector3(res,tmpi,tmpj)
+	
+	if(res != -1):
+		var plant_name = $Plants.tile_set.tile_get_texture(res).resource_path.substr(26).replace(".png","")
+		return plant_name
+	return null

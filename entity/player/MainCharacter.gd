@@ -3,7 +3,7 @@ extends "res://entity/Entity.gd"
 #after using dash, player gets 4x faster for a short period of time
 var dash_boost = 1
 var dash_cooldown = 0
-var selected_plant_index = -1
+var selected_plant = null
 
 func _ready():
 	print(get_parent().name)
@@ -70,21 +70,21 @@ func _process(delta):
 	var player_dir = get_local_mouse_position()/8
 	if(player_dir.length() > 6): 
 		$AskSymbol.visible = false
-		selected_plant_index = -1
+		selected_plant = null
 		return
 	var final_loc = Vector2(int(position.x/32),int(position.y/32)) + player_dir
 	var res = get_parent().get_plant_at(final_loc.x+2,final_loc.y+2)
-	if(res.x != -1):
+	if(res != null):
 		$AskSymbol.visible = true
 		$AskSymbol.position = get_local_mouse_position()
-		selected_plant_index = res.x
+		selected_plant = res
 	else:
 		$AskSymbol.visible = false
-		selected_plant_index = -1
+		selected_plant = null
 		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("get_plant_info"):
-		print(selected_plant_index)
+		print(selected_plant)
 		
 
 
