@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/Lobster-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Merriweather-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/scripts/Main Menu.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="Main Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -268.5
+margin_right = 268.5
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 1 )
+text = "The Flatlands"
+align = 1
+valign = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -259.0
+margin_top = -128.0
+margin_right = 259.0
+margin_bottom = 128.0
+
+[node name="New Game Button" type="Button" parent="ButtonContainer"]
+margin_right = 518.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 2 )
+text = "New Game"
+
+[node name="Continue Game Button" type="Button" parent="ButtonContainer"]
+margin_top = 51.0
+margin_right = 518.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 2 )
+disabled = true
+text = "Continue"
+
+[node name="Setting Button" type="Button" parent="ButtonContainer"]
+margin_top = 102.0
+margin_right = 518.0
+margin_bottom = 149.0
+custom_fonts/font = SubResource( 2 )
+disabled = true
+text = "Settings"
+
+[node name="About Button" type="Button" parent="ButtonContainer"]
+margin_top = 153.0
+margin_right = 518.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 2 )
+disabled = true
+text = "About"
+
+[node name="Exit Button" type="Button" parent="ButtonContainer"]
+margin_top = 204.0
+margin_right = 518.0
+margin_bottom = 251.0
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+
+[connection signal="pressed" from="ButtonContainer/New Game Button" to="." method="_on_New_Game_Button_pressed"]
+[connection signal="pressed" from="ButtonContainer/Exit Button" to="." method="_on_Exit_Button_pressed"]
