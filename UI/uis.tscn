@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/scenes/PlayerOverlay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/scenes/PlantCheckMenu.tscn" type="PackedScene" id=2]
+
+[node name="playerUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="PlayerOverlay" parent="." instance=ExtResource( 1 )]
+margin_right = 239.0
+margin_bottom = 121.0
+
+[node name="PlantCheckMenu" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -505.5
+margin_top = -368.0
+margin_right = 505.5

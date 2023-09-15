@@ -7,7 +7,9 @@ var hunger = 100
 var selected_plant = null
 var samples = []
 
+
 func _ready():
+	health = 75
 	print(get_parent().name)
 
 func _physics_process(delta):
@@ -69,17 +71,16 @@ func init_animations(velocity):
 		$AnimatedSprite.play("Idle")
 		
 func _process(delta):
-	$UInode/PlayerOverlay/HpBar.value = health
-	$UInode/PlayerOverlay/HungerLabel.text = str(hunger)
+	$UInode/playerUI/PlayerOverlay/HpBar.value = health
+	$UInode/playerUI/PlayerOverlay/HungerLabel.text = str(hunger)
 	
-	
-	var player_dir = get_local_mouse_position()/8
-	if(player_dir.length() > 6): 
+	var player_dir = get_global_mouse_position()/32
+	if((player_dir-(position/32)).length() > 5): 
 		$AskSymbol.visible = false
 		selected_plant = null
 		return
-	var final_loc = Vector2(int(position.x/32),int(position.y/32)) + player_dir
-	var res = get_parent().get_plant_at(final_loc.x+2,final_loc.y+2)
+	var final_loc = player_dir 
+	var res = get_parent().get_plant_at(final_loc.x,final_loc.y)
 	if(res != null):
 		$AskSymbol.visible = true
 		$AskSymbol.position = get_local_mouse_position()
@@ -89,19 +90,19 @@ func _process(delta):
 		selected_plant = null
 	
 	if selected_plant == null:
-		$UInode/PlantCheckMenu.visible = false
+		$UInode/playerUI/PlantCheckMenu.visible = false
 
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("get_plant_info") and selected_plant != null:
-		$UInode/PlantCheckMenu.visible = true
-		$UInode/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
-		$UInode/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
+		$UInode/playerUI/PlantCheckMenu.visible = true
+		$UInode/playerUI/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
+		$UInode/playerUI/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
 		
 		if(samples.has(selected_plant.get("name"))):
-			$UInode/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample."
+			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample."
 		else:
-			$UInode/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. You can learn it on the research table."
+			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. You can learn it on the research table."
 			samples.push_back(selected_plant.get("name"))
 			print(samples)
 		#print(selected_plant.get("short_descS

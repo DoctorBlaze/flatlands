@@ -1,5 +1,5 @@
 extends Node2D
-var plant_search_radius = 2
+var plant_search_radius = 1
 var selected_plant = -1
 
 

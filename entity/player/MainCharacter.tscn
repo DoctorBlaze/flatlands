@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://asset/texture/player/sprites/playerFront.png" type="Texture" id=1]
 [ext_resource path="res://asset/texture/player/sprites/playerSideWalk.png" type="Texture" id=2]
@@ -18,11 +18,10 @@
 [ext_resource path="res://asset/texture/player/animations/dash5.png" type="Texture" id=16]
 [ext_resource path="res://asset/texture/interaction_icon/ask_symbol.png" type="Texture" id=17]
 [ext_resource path="res://asset/texture/player/sprites/shadow.png" type="Texture" id=18]
-[ext_resource path="res://UI/scenes/PlantCheckMenu.tscn" type="PackedScene" id=19]
-[ext_resource path="res://UI/scenes/PlayerOverlay.tscn" type="PackedScene" id=20]
+[ext_resource path="res://UI/uis.tscn" type="PackedScene" id=19]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5, 5.5 )
+extents = Vector2( 10.5, 9.5 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -64,11 +63,12 @@ animations = [ {
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -6 )
+position = Vector2( -0.5, -7.5 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -48 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 1 )
 animation = "Idle"
 
@@ -92,26 +92,14 @@ animation = "none"
 
 [node name="AskSymbol" type="Sprite" parent="."]
 visible = false
+scale = Vector2( 3, 3 )
 z_index = 4
 texture = ExtResource( 17 )
 
-[node name="UInode" type="Node2D" parent="."]
-scale = Vector2( 0.25, 0.25 )
-z_index = 10
+[node name="UInode" type="CanvasLayer" parent="."]
+process_priority = 49
 
-[node name="PlantCheckMenu" parent="UInode" instance=ExtResource( 19 )]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -576.0
-margin_top = -32.0
-margin_right = 572.0
-margin_bottom = 340.0
-
-[node name="PlayerOverlay" parent="UInode" instance=ExtResource( 20 )]
-margin_left = -108.0
-margin_top = -360.0
-margin_right = 108.0
-margin_bottom = -264.0
+[node name="playerUI" parent="UInode" instance=ExtResource( 19 )]
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
