@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://asset/texture/ui/plant_check_ui.png" type="Texture" id=1]
+[ext_resource path="res://fonts/Merriweather-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="PlantCheckMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="PlantName" type="Label" parent="."]
+margin_left = 44.0
+margin_top = 44.0
+margin_right = 657.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( -294, -54 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "someplant"
+align = 1
+valign = 1
+
+[node name="OterInfo" type="Label" parent="."]
+margin_left = 65.0
+margin_top = 108.0
+margin_right = 650.0
+margin_bottom = 543.0
+rect_pivot_offset = Vector2( -294, -54 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+autowrap = true

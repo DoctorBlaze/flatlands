@@ -21,5 +21,5 @@ func get_plant_at(x,y):
 	
 	if(res != -1):
 		var plant_name = $Plants.tile_set.tile_get_texture(res).resource_path.substr(26).replace(".png","")
-		return plant_name
+		if $PlantsList.p_list.has(plant_name): return $PlantsList.p_list[plant_name]
 	return null
