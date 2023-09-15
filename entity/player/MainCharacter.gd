@@ -93,12 +93,18 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	
 	if Input.is_action_just_pressed("get_plant_info") and selected_plant != null:
 		$UInode/PlantCheckMenu.visible = true
 		$UInode/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
 		$UInode/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
-		#print(selected_plant.get("short_desc"))
+		
+		if(samples.has(selected_plant.get("name"))):
+			$UInode/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample."
+		else:
+			$UInode/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. You can learn it on the research table."
+			samples.push_back(selected_plant.get("name"))
+			print(samples)
+		#print(selected_plant.get("short_descS
 
 
 
