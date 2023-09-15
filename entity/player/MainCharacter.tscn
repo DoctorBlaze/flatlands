@@ -98,11 +98,12 @@ scale = Vector2( 0.25, 0.25 )
 z_index = 10
 
 [node name="PlantCheckMenu" parent="UInode" instance=ExtResource( 19 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -292.0
-margin_top = -44.0
-margin_right = 293.0
-margin_bottom = 328.0
+margin_left = -400.0
+margin_top = -288.0
+margin_right = 344.0
+margin_bottom = 212.0

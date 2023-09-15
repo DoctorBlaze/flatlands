@@ -90,9 +90,8 @@ func _unhandled_input(event):
 	
 	if Input.is_action_just_pressed("get_plant_info") and selected_plant != null:
 		$UInode/PlantCheckMenu.visible = true
-		
-		$UInode/PlantCheckMenu/PlantName.text = selected_plant.get("name")
-		$UInode/PlantCheckMenu/OterInfo.text = selected_plant.get("short_desc")
+		$UInode/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
+		$UInode/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
 		#print(selected_plant.get("short_desc"))
 		
 
