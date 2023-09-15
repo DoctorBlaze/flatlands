@@ -3,6 +3,7 @@ extends "res://entity/Entity.gd"
 #after using dash, player gets 4x faster for a short period of time
 var dash_boost = 1
 var dash_cooldown = 0
+var hunger = 100
 var selected_plant = null
 
 func _ready():

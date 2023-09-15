@@ -5,10 +5,12 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
+use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="PlantCheckMenu" type="Control"]
@@ -22,22 +24,21 @@ mouse_filter = 2
 mouse_default_cursor_shape = 1
 
 [node name="Book" type="Control" parent="."]
-margin_right = 864.0
-margin_bottom = 540.0
+margin_right = 1150.0
+margin_bottom = 368.0
 
 [node name="TextureRect" type="TextureRect" parent="Book"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -14.0
-margin_bottom = -104.0
+margin_right = -130.0
 texture = ExtResource( 1 )
 expand = true
 
 [node name="PlantName" type="Label" parent="Book"]
-margin_left = 59.0
-margin_top = 37.0
-margin_right = 524.0
-margin_bottom = 83.0
+margin_left = 61.0
+margin_top = 29.0
+margin_right = 660.0
+margin_bottom = 75.0
 rect_pivot_offset = Vector2( -294, -54 )
 custom_colors/font_color = Color( 0.352941, 0.258824, 0.254902, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -46,11 +47,21 @@ align = 1
 valign = 1
 
 [node name="OterInfo" type="Label" parent="Book"]
-margin_left = 57.0
-margin_top = 96.0
-margin_right = 538.0
-margin_bottom = 393.0
+margin_left = 61.0
+margin_top = 86.0
+margin_right = 620.0
+margin_bottom = 335.0
 rect_pivot_offset = Vector2( -294, -54 )
 custom_colors/font_color = Color( 0.352941, 0.258824, 0.254902, 1 )
 custom_fonts/font = SubResource( 2 )
+autowrap = true
+
+[node name="Label" type="Label" parent="Book"]
+margin_left = 711.0
+margin_top = 52.0
+margin_right = 928.0
+margin_bottom = 312.0
+custom_colors/font_color = Color( 0.352941, 0.258824, 0.254902, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "you have to learn a sample on research table to get some more information..."
 autowrap = true
