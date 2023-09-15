@@ -112,6 +112,6 @@ margin_bottom = 340.0
 
 [node name="PlayerOverlay" parent="UInode" instance=ExtResource( 20 )]
 margin_left = -108.0
-margin_top = 196.0
+margin_top = -360.0
 margin_right = 108.0
-margin_bottom = 292.0
+margin_bottom = -264.0

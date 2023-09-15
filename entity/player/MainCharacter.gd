@@ -5,6 +5,7 @@ var dash_boost = 1
 var dash_cooldown = 0
 var hunger = 100
 var selected_plant = null
+var samples = []
 
 func _ready():
 	print(get_parent().name)
@@ -68,6 +69,10 @@ func init_animations(velocity):
 		$AnimatedSprite.play("Idle")
 		
 func _process(delta):
+	$UInode/PlayerOverlay/HpBar.value = health
+	$UInode/PlayerOverlay/HungerLabel.text = str(hunger)
+	
+	
 	var player_dir = get_local_mouse_position()/8
 	if(player_dir.length() > 6): 
 		$AskSymbol.visible = false
@@ -94,6 +99,6 @@ func _unhandled_input(event):
 		$UInode/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
 		$UInode/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
 		#print(selected_plant.get("short_desc"))
-		
+
 
 
