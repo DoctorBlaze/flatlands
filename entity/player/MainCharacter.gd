@@ -4,9 +4,12 @@ extends "res://entity/Entity.gd"
 var dash_boost = 1
 var dash_cooldown = 0
 var hunger = 100
+var coins = 0
 var selected_plant = null
+var selected_interactable = null
 var samples = []
-
+var paper = 0 #paper is being used to learn the samples. every sample needs 1 paper to be learnt. You can find paper in chests or buy from some NPC
+var velocity = Vector2()
 
 func _ready():
 	health = 75
@@ -14,7 +17,7 @@ func _ready():
 
 func _physics_process(delta):
 	#movement _____________________________________________________________
-	var velocity = Vector2()
+	velocity = Vector2()
 		
 	if Input.is_action_pressed("go_left"):
 		velocity.x = -1
@@ -73,27 +76,31 @@ func init_animations(velocity):
 func _process(delta):
 	$UInode/playerUI/PlayerOverlay/HpBar.value = health
 	$UInode/playerUI/PlayerOverlay/HungerLabel.text = str(hunger)
-	
+
+func any_input_changes():
 	var player_dir = get_global_mouse_position()/32
 	if((player_dir-(position/32)).length() > 5): 
 		$AskSymbol.visible = false
 		selected_plant = null
 		return
-	var final_loc = player_dir 
-	var res = get_parent().get_plant_at(final_loc.x,final_loc.y)
+	var res = get_parent().get_plant_at(player_dir.x,player_dir.y)
 	if(res != null):
 		$AskSymbol.visible = true
 		$AskSymbol.position = get_local_mouse_position()
-		selected_plant = res
+		if(PlantsList.p_list.has(res)): selected_plant = PlantsList.p_list[res]
 	else:
 		$AskSymbol.visible = false
 		selected_plant = null
 	
 	if selected_plant == null:
 		$UInode/playerUI/PlantCheckMenu.visible = false
+		
 
 
 func _unhandled_input(event):
+	if(event is InputEventMouseMotion) or (velocity != Vector2(0,0)):
+		any_input_changes()
+		
 	if Input.is_action_just_pressed("get_plant_info") and selected_plant != null:
 		$UInode/playerUI/PlantCheckMenu.visible = true
 		$UInode/playerUI/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
@@ -105,7 +112,24 @@ func _unhandled_input(event):
 			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. You can learn it on the research table."
 			samples.push_back(selected_plant.get("name"))
 			print(samples)
-		#print(selected_plant.get("short_descS
+			
+	if Input.is_action_just_pressed("interact") and selected_interactable != null:
+		print("interacted!")
 
 
 
+#select closest interactable
+func _on_InteractArea_area_entered(area):
+	var all_inters = $InteractArea.get_overlapping_areas()
+	var dst = 1000
+	for i in all_inters:
+		if(dst > Vector2(global_position - i.global_position).length()):
+			dst = Vector2(global_position - i.global_position).length()
+			selected_interactable = i
+	$UInode/playerUI/InteractHint.visible = true
+
+
+func _on_InteractArea_area_exited(area):
+	if($InteractArea.get_overlapping_areas().size() <= 0): 
+		selected_interactable = null
+		$UInode/playerUI/InteractHint.visible = false
