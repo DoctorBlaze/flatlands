@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/Lobster-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Merriweather-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://UI/scripts/Settings Menu.gd" type="Script" id=3]
+[ext_resource path="res://UI/scripts/Help Menu.gd" type="Script" id=3]
 [ext_resource path="res://UI/sounds/select.ogg" type="AudioStream" id=4]
 [ext_resource path="res://UI/sounds/return.ogg" type="AudioStream" id=5]
 

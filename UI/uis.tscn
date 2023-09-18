@@ -23,6 +23,7 @@ margin_right = 239.0
 margin_bottom = 121.0
 
 [node name="PlantCheckMenu" parent="." instance=ExtResource( 2 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
