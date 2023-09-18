@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/scenes/PlayerOverlay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/scenes/PlantCheckMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 3 )
+
+[node name="playerUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="PlayerOverlay" parent="." instance=ExtResource( 1 )]
+margin_right = 239.0
+margin_bottom = 121.0
+
+[node name="PlantCheckMenu" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -505.5
+margin_top = -368.0
+margin_right = 505.5
+mouse_default_cursor_shape = 0
+input_pass_on_modal_close_click = false
+
+[node name="InteractHint" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = 61.0
+margin_right = 70.0
+margin_bottom = 9.5
+custom_fonts/font = SubResource( 1 )
+text = "press \"E\" to interact"
+align = 1
