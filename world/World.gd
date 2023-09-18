@@ -1,8 +1,7 @@
 extends Node2D
+
 var plant_search_radius = 1
 var selected_plant = -1
-
-
 
 
 func get_plant_at(x,y):

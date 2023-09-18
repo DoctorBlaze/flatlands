@@ -49,23 +49,24 @@ func _physics_process(delta):
 	
 	#final speed _____________________________________________________________
 	init_animations(velocity)
-	move_and_slide(velocity)
+	if not global.is_paused:
+		move_and_slide(velocity)
 	
 	
 func init_animations(velocity):
 	YSort 
-	if velocity.y > 0:
+	if velocity.y > 0 and not global.is_paused:
 		$AnimatedSprite.play("Go Down")
 		return
-	elif velocity.y < 0:
+	elif velocity.y < 0 and not global.is_paused:
 		$AnimatedSprite.play("Go Up")
 		return
 			
-	elif velocity.x > 0:
+	elif velocity.x > 0 and not global.is_paused:
 		$AnimatedSprite.play("Go Side")
 		$AnimatedSprite.flip_h = false
 		return
-	elif velocity.x < 0:
+	elif velocity.x < 0 and not global.is_paused:
 		$AnimatedSprite.play("Go Side")
 		$AnimatedSprite.flip_h = true
 		return
