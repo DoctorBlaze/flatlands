@@ -7,8 +7,7 @@ var hunger = 100
 var coins = 0
 var selected_plant = null
 var selected_interactable = null
-var samples = []
-var paper = 0 #paper is being used to learn the samples. every sample needs 1 paper to be learnt. You can find paper in chests or buy from some NPC
+var paper = 2 #paper is being used to learn the samples. every sample needs 1 paper to be learnt. You can find paper in chests or buy from some NPC
 var velocity = Vector2()
 
 func _ready():
@@ -106,18 +105,20 @@ func _unhandled_input(event):
 		$UInode/playerUI/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
 		$UInode/playerUI/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
 		
-		if(samples.has(selected_plant.get("name"))):
-			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample."
+		if(learned_plants.has(selected_plant.get("name"))):
+			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy learned this plant! Yay!"
+		elif(samples.has(selected_plant.get("name"))):
+			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample. Use research table to learn it."
 		else:
-			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. You can learn it on the research table."
+			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. Now you can learn it on the research table."
 			samples.push_back(selected_plant.get("name"))
 			print(samples)
 			
 	if Input.is_action_just_pressed("interact") and selected_interactable != null:
-		print("interacted!")
+		use_interactable()
 
 
-
+# interactables -------------------------------------------------------------------------
 #select closest interactable
 func _on_InteractArea_area_entered(area):
 	var all_inters = $InteractArea.get_overlapping_areas()
@@ -133,3 +134,19 @@ func _on_InteractArea_area_exited(area):
 	if($InteractArea.get_overlapping_areas().size() <= 0): 
 		selected_interactable = null
 		$UInode/playerUI/InteractHint.visible = false
+		
+func use_interactable():
+	if(selected_interactable.get_name() == "ResearchTableArea"):
+		$UInode/playerUI/ResearchTable.open_ui(self,samples)
+
+
+# research -------------------------------------------------------------------------
+var samples = []
+var learned_plants = []
+
+func make_research(ind):
+	if paper <= 0: return false
+	if(!learned_plants.has(samples[ind])): learned_plants.push_back(samples[ind])
+	samples.remove(ind)
+	paper -= 1
+	return true
