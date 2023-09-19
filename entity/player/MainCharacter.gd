@@ -146,7 +146,7 @@ var samples = []
 var learned_plants = []
 
 func make_research(ind):
-	if paper <= 0: return false
+	if paper < 1: return false
 	if(!learned_plants.has(samples[ind])): learned_plants.push_back(samples[ind])
 	samples.remove(ind)
 	paper -= 1
