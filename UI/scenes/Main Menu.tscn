@@ -110,6 +110,5 @@ stream = ExtResource( 7 )
 [connection signal="pressed" from="ButtonContainer/Help Button" to="." method="_on_Help_Button_pressed"]
 [connection signal="mouse_entered" from="ButtonContainer/About Button" to="." method="_on_About_Button_mouse_entered"]
 [connection signal="pressed" from="ButtonContainer/About Button" to="." method="_on_About_Button_pressed"]
-[connection signal="button_down" from="ButtonContainer/Exit Button" to="." method="_on_Exit_Button_button_down"]
 [connection signal="mouse_entered" from="ButtonContainer/Exit Button" to="." method="_on_Exit_Button_mouse_entered"]
 [connection signal="pressed" from="ButtonContainer/Exit Button" to="." method="_on_Exit_Button_pressed"]

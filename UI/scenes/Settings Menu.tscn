@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/Lobster-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Merriweather-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://UI/scripts/Settings Menu.gd" type="Script" id=3]
 [ext_resource path="res://UI/sounds/select.ogg" type="AudioStream" id=4]
 [ext_resource path="res://UI/sounds/return.ogg" type="AudioStream" id=5]
+[ext_resource path="res://UI/sounds/hover.ogg" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -50,5 +51,8 @@ stream = ExtResource( 4 )
 [node name="ReturnSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 5 )
 
-[connection signal="mouse_entered" from="Return Button" to="." method="_on_New_Game_Button_mouse_entered"]
+[node name="HoverSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 6 )
+
+[connection signal="mouse_entered" from="Return Button" to="." method="_on_Return_Button_mouse_entered"]
 [connection signal="pressed" from="Return Button" to="." method="_on_Return_Button_pressed"]
