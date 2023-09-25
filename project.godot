@@ -16,9 +16,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlantsList="*res://world/PlantsList.gd"
+PlantsList="*res://plant/PlantsList.gd"
 global="*res://scripts/global.gd"
 settings="*res://scripts/settings.gd"
+Materials="*res://item/Materials.gd"
+WorldEnv="*res://world/WorldEnv.gd"
 
 [gui]
 

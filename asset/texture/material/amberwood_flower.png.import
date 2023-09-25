@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrowroot.png-a9f8f95874f96f259f8988594282ec7a.stex"
+path="res://.import/amberwood_flower.png-eaa53040581e6498899e2050b7f91d16.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/plant/arrowroot.png"
-dest_files=[ "res://.import/arrowroot.png-a9f8f95874f96f259f8988594282ec7a.stex" ]
+source_file="res://asset/texture/material/amberwood_flower.png"
+dest_files=[ "res://.import/amberwood_flower.png-eaa53040581e6498899e2050b7f91d16.stex" ]
 
 [params]
 

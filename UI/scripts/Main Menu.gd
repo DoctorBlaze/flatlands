@@ -1,11 +1,12 @@
 extends Control
 
-const time = 65000
+const time = 65
 
 func _ready():
 	$Sounds/ReturnSound.play()
 
 # <= Click =>
+
 
 func _on_New_Game_Button_pressed():
 	$Sounds/SelectSound.play()

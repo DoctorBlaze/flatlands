@@ -13,7 +13,7 @@
 [ext_resource path="res://asset/texture/tile/pathDecorations.png" type="Texture" id=11]
 [ext_resource path="res://asset/texture/plant/emberwood.png" type="Texture" id=12]
 [ext_resource path="res://asset/texture/plant/bush.png" type="Texture" id=13]
-[ext_resource path="res://asset/texture/plant/arrowroot.png" type="Texture" id=14]
+[ext_resource path="res://asset/texture/plant/refledius.png" type="Texture" id=14]
 [ext_resource path="res://asset/texture/tile/whitestone.png" type="Texture" id=15]
 [ext_resource path="res://interactables/ResearchTable.tscn" type="PackedScene" id=16]
 
