@@ -16,6 +16,7 @@ var velocity = Vector2()
 func _ready():
 	entity_type = EntityType.Player
 	health = 75
+	speed = 256
 	print(get_parent().name)
 
 func _physics_process(delta):
