@@ -70,6 +70,7 @@ var plant_search_radius = 2
 var selected_plant = -1
 
 func get_plant_at(x,y):
+	return null
 	var res = -1
 	var tmpi = 0
 	var tmpj = 0
@@ -136,10 +137,9 @@ func ParseChunkTiles(x_chunk_off,y_chunk_off,MainMap,ToplayerMap):
 	var yoff = ChunkSize * y_chunk_off
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
-			if(x==0 and y==0): $Mainmap.set_cell(xoff+x, yoff+y, -1)
-			else: $Mainmap.set_cell(xoff+x, yoff+y, 0)
+			$Mainmap.set_cell(xoff+x, yoff+y, 0)
 			$Toplayer.set_cell(xoff+x,yoff+y,-1)
-	$Mainmap.update_bitmask_region()
+	
 
 
 func RemoveChunkTiles(x_chunk_off,y_chunk_off):
@@ -154,7 +154,7 @@ func RemoveChunkTiles(x_chunk_off,y_chunk_off):
 #creates the objects of the chunk and tries to parse it
 func TryLoadChunk(x,y):
 	if(getChunk(x,y)==null):
-		print("gen! chunk num: ", Chunks.size())
+		
 		var ch = Chunk.new()
 		ch.x = x
 		ch.y = y
@@ -163,15 +163,17 @@ func TryLoadChunk(x,y):
 		ch.GenChunk()
 		ch.ParseChunkTiles()
 		Chunks.push_back(ch)
+		return true
+	return false
 
 
 func LoadChunksUnderPlayer():
 	var px = int((Player.position.x / 32) / ChunkSize)
 	var py = int((Player.position.y / 32) / ChunkSize)
-	
+	var isNewGen = false
 	for i in range(-1,3):
 		for j in range(-1,3):
-			TryLoadChunk(px+i-1,py+j-1)
+			isNewGen = TryLoadChunk(px+i-1,py+j-1) or isNewGen
 	
 	var idx = []
 	
@@ -186,5 +188,8 @@ func LoadChunksUnderPlayer():
 				has_garbage = true
 				break
 			else: has_garbage = false
-		
+	
+	if (isNewGen):
+		$Mainmap.update_bitmask_region()
+		print("gen! chunk num: ", Chunks.size())
 

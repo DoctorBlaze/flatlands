@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -37,6 +37,17 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.4 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="DynamicFont" id=8]
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 0.4 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -208,4 +219,43 @@ custom_styles/disabled = SubResource( 7 )
 custom_styles/normal = SubResource( 7 )
 text = "Advanced settings"
 
+[node name="Label" type="Label" parent="VBoxContainer2"]
+margin_top = 56.0
+margin_right = 245.0
+margin_bottom = 410.0
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+
+[node name="BackButton" type="Button" parent="VBoxContainer2"]
+margin_top = 414.0
+margin_right = 245.0
+margin_bottom = 433.0
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
+text = "Back"
+
 [connection signal="pressed" from="VBoxContainer2/CreateWorld" to="." method="_on_CreateWorld_pressed"]
+[connection signal="pressed" from="VBoxContainer2/BackButton" to="." method="_on_BackButton_pressed"]
