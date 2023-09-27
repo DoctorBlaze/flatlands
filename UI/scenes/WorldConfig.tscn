@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/scripts/WorldConfig.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 0.662745 )
@@ -35,9 +36,23 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.4 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="WorldConfigWindow" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -418.0
+margin_top = -300.0
+margin_right = 418.0
+margin_bottom = 300.0
+script = ExtResource( 3 )
 
 [node name="TextureRect" type="Panel" parent="."]
 anchor_right = 1.0
@@ -50,31 +65,111 @@ margin_top = 123.0
 margin_right = 504.0
 margin_bottom = 550.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="ChunkSizeLabel" type="Label" parent="VBoxContainer"]
 margin_right = 461.0
-margin_bottom = 19.0
+margin_bottom = 41.0
 custom_fonts/font = SubResource( 5 )
-text = "Chunk size: "
+text = "
+"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 23.0
+[node name="ChunkSizeSlider" type="HSlider" parent="VBoxContainer"]
+margin_top = 45.0
 margin_right = 461.0
-margin_bottom = 39.0
-hint_tooltip = ";kl;jlk;kl;kl;kl;kl;"
+margin_bottom = 61.0
+min_value = 80.0
+max_value = 160.0
+value = 128.0
 
-[node name="Container" type="Control" parent="."]
+[node name="DayLengthLabel" type="Label" parent="VBoxContainer"]
+margin_top = 65.0
+margin_right = 461.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 5 )
+text = "
+"
+
+[node name="DayLengthSlider" type="HSlider" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 461.0
+margin_bottom = 126.0
+min_value = 800.0
+max_value = 1600.0
+value = 1200.0
+
+[node name="SeasonLengthLabel" type="Label" parent="VBoxContainer"]
+margin_top = 130.0
+margin_right = 461.0
+margin_bottom = 171.0
+custom_fonts/font = SubResource( 5 )
+text = "
+"
+
+[node name="SeasonLengthSlider" type="HSlider" parent="VBoxContainer"]
+margin_top = 175.0
+margin_right = 461.0
+margin_bottom = 191.0
+min_value = 10.0
+max_value = 90.0
+value = 20.0
+
+[node name="DifficultyLabel" type="Label" parent="VBoxContainer"]
+margin_top = 195.0
+margin_right = 461.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+text = "
+
+Difficulty:  "
+
+[node name="DifficultySelection" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 292.0
+margin_right = 461.0
+margin_bottom = 317.0
+
+[node name="easy" type="Button" parent="VBoxContainer/DifficultySelection"]
+margin_right = 45.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
+text = "easy"
+flat = true
+
+[node name="normal" type="Button" parent="VBoxContainer/DifficultySelection"]
+margin_left = 49.0
+margin_right = 94.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
+text = "easy"
+flat = true
+
+[node name="hard" type="Button" parent="VBoxContainer/DifficultySelection"]
+margin_left = 98.0
+margin_right = 143.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
+text = "easy"
+flat = true
+
+[node name="DifficultyLabel2" type="Label" parent="VBoxContainer"]
+margin_top = 321.0
+margin_right = 461.0
+margin_bottom = 362.0
+custom_fonts/font = SubResource( 5 )
+text = "Difficulty description
+"
+
+[node name="WorldNamePanel" type="Control" parent="."]
 margin_left = 31.0
 margin_top = 40.0
 margin_right = 494.0
 margin_bottom = 91.0
 
-[node name="Label" type="Label" parent="Container"]
+[node name="WorldNameLabel" type="Label" parent="WorldNamePanel"]
 margin_right = 86.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 2 )
 text = "World name: "
 
-[node name="TextEdit" type="TextEdit" parent="Container"]
+[node name="WorldName" type="TextEdit" parent="WorldNamePanel"]
 margin_left = 150.0
 margin_right = 443.0
 margin_bottom = 31.0
@@ -82,3 +177,35 @@ custom_fonts/font = SubResource( 5 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = SubResource( 6 )
 text = "gfgfg"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+margin_left = 547.0
+margin_top = 110.0
+margin_right = 792.0
+margin_bottom = 520.0
+
+[node name="CreateWorld" type="Button" parent="VBoxContainer2"]
+modulate = Color( 0.823529, 1, 0.337255, 1 )
+margin_right = 245.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+text = "Create world"
+
+[node name="AdvancedSettings" type="Button" parent="VBoxContainer2"]
+margin_top = 33.0
+margin_right = 245.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+text = "Advanced settings"
+
+[connection signal="pressed" from="VBoxContainer2/CreateWorld" to="." method="_on_CreateWorld_pressed"]

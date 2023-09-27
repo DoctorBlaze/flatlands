@@ -11,7 +11,7 @@ func _ready():
 func _on_New_Game_Button_pressed():
 	$Sounds/SelectSound.play()
 	global.sleep(time)
-	get_tree().change_scene("res://world/World.tscn")
+	get_tree().change_scene("res://UI/scenes/WorldConfig.tscn")
 
 
 func _on_Continue_Game_Button_pressed():

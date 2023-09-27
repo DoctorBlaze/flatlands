@@ -5,13 +5,13 @@ const Seasons = ["spring","summer","autumn","winter"]
 enum DayCycle {Morning,Day,Evening,Night}
 
 #in seconds
-const DayLength = 1200
-const SeasonLength = 20 #in days
+var DayLength = 1200
+var SeasonLength = 20 #in days
 var WorldTime = 0
 
 #world gen 
-const ChunkSize = 4 #in tiles
-const WorldScaling = 4
+var ChunkSize = 4 #in tiles
+var WorldScaling = 4
 var Chunks = []
 var ChunkStatus = []
 
@@ -22,7 +22,7 @@ var WorldName = "cummers"
 var Player
 
 
-
+#save and load world -------------------------------------------------------------------------------
 func SaveWorld():
 	var cfg = File.new()
 	var cfgStr = "{\n"
@@ -34,7 +34,6 @@ func SaveWorld():
 	cfgStr += '"DayLength" : ' + str(DayLength) + ',\n'
 	cfgStr += '"SeasonLength" : ' + str(SeasonLength) + ',\n'
 	cfgStr += '"ChunkSize" : ' + str(ChunkSize) + ',\n'
-	cfgStr += '"WorldScaling" : ' + str(WorldScaling) + ',\n'
 	cfgStr += '\n}'
 	cfg.open("res://_run/worlds/" + WorldName + "/config.json", cfg.WRITE)
 	assert(cfg.is_open())
@@ -46,17 +45,25 @@ func SaveWorld():
 	tm.store_string(str(WorldTime))
 	tm.close()
 
+func LoadWorld():
+	WorldName = global.SelectedWorld
+	var cfg = File.new()
+	cfg.open("res://_run/worlds/" + WorldName + "/config.json", cfg.READ)
+	var data = parse_json(cfg.get_as_text())
+	ChunkSize = data["ChunkSize"]
+	DayLength = data["DayLength"]
+	SeasonLength = data["SeasonLength"]
 
 
-
-#uptates world time
+#uptates world time --------------------------------------------------------------------------------
 func _on_SecondTimer_timeout():
 	WorldTime += 1
 	LoadChunksUnderPlayer()
 
 
 func _ready():
-	SaveWorld()
+	LoadWorld()
+	
 	Player = $MainCharacter
 
 var plant_search_radius = 2
@@ -129,9 +136,10 @@ func ParseChunkTiles(x_chunk_off,y_chunk_off,MainMap,ToplayerMap):
 	var yoff = ChunkSize * y_chunk_off
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
-			#if(x==0 and y==0): $Mainmap.set_cell(xoff+x, yoff+y, -1)
-			$Mainmap.set_cell(xoff+x, yoff+y, 0)
+			if(x==0 and y==0): $Mainmap.set_cell(xoff+x, yoff+y, -1)
+			else: $Mainmap.set_cell(xoff+x, yoff+y, 0)
 			$Toplayer.set_cell(xoff+x,yoff+y,-1)
+	$Mainmap.update_bitmask_region()
 
 
 func RemoveChunkTiles(x_chunk_off,y_chunk_off):
@@ -158,7 +166,6 @@ func TryLoadChunk(x,y):
 
 
 func LoadChunksUnderPlayer():
-	$Mainmap.update_bitmask_region()
 	var px = int((Player.position.x / 32) / ChunkSize)
 	var py = int((Player.position.y / 32) / ChunkSize)
 	

@@ -1,6 +1,7 @@
 extends Node
 
 var is_paused = false
+var SelectedWorld = ""
 
 func sleep(time):
 	while(time > 0):
