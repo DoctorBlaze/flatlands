@@ -10,7 +10,6 @@ func _input(event):
 				var res = player.make_research(i)
 				$PCouter.text = str(player.paper)
 				if res: 
-					samples.remove(i)
 					$ScrollContainer/VBoxContainer.get_children()[i].queue_free()
 				return
 

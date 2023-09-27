@@ -1,19 +1,18 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://entity/player/MainCharacter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://world/World.gd" type="Script" id=2]
-[ext_resource path="res://asset/texture/tile/grassTileset.png" type="Texture" id=3]
-[ext_resource path="res://asset/texture/tile/rocks.png" type="Texture" id=6]
-[ext_resource path="res://asset/texture/tile/smallGrass0.png" type="Texture" id=7]
-[ext_resource path="res://asset/texture/tile/smallGrass1.png" type="Texture" id=8]
-[ext_resource path="res://asset/texture/tile/smallGrass2.png" type="Texture" id=9]
-[ext_resource path="res://asset/texture/tile/pathTileset.png" type="Texture" id=10]
-[ext_resource path="res://asset/texture/tile/pathDecorations.png" type="Texture" id=11]
-[ext_resource path="res://asset/texture/tile/whitestone.png" type="Texture" id=15]
+[ext_resource path="res://asset/texture/tile/grassTileset.png" type="Texture" id=1]
+[ext_resource path="res://asset/texture/tile/pathDecorations.png" type="Texture" id=2]
+[ext_resource path="res://asset/texture/tile/rocks.png" type="Texture" id=3]
+[ext_resource path="res://asset/texture/tile/pathTileset.png" type="Texture" id=4]
+[ext_resource path="res://asset/texture/tile/smallGrass1.png" type="Texture" id=5]
+[ext_resource path="res://asset/texture/tile/smallGrass0.png" type="Texture" id=6]
+[ext_resource path="res://asset/texture/tile/smallGrass2.png" type="Texture" id=7]
+[ext_resource path="res://asset/texture/tile/whitestone.png" type="Texture" id=8]
+[ext_resource path="res://world/Chunk.gd" type="Script" id=9]
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=12]
 0/name = "pathTileset.png 0"
-0/texture = ExtResource( 10 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 48 )
@@ -36,9 +35,9 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=13]
 0/name = "grassTileset.png 0"
-0/texture = ExtResource( 3 )
+0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 48 )
@@ -60,29 +59,6 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "pathTileset.png 1"
-1/texture = ExtResource( 10 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 64, 48 )
-1/tile_mode = 1
-1/autotile/bitmask_mode = 0
-1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 511, Vector2( 0, 1 ), 446, Vector2( 0, 2 ), 219, Vector2( 0, 3 ), 59, Vector2( 0, 4 ), 146, Vector2( 0, 5 ), 176, Vector2( 1, 0 ), 255, Vector2( 1, 1 ), 507, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 58, Vector2( 1, 4 ), 56, Vector2( 1, 5 ), 152, Vector2( 2, 0 ), 447, Vector2( 2, 1 ), 506, Vector2( 2, 2 ), 438, Vector2( 2, 3 ), 182, Vector2( 2, 4 ), 27, Vector2( 2, 5 ), 144, Vector2( 3, 0 ), 507, Vector2( 3, 1 ), 187, Vector2( 3, 2 ), 504, Vector2( 3, 3 ), 434, Vector2( 3, 4 ), 54, Vector2( 3, 5 ), 18, Vector2( 4, 0 ), 510, Vector2( 4, 1 ), 446, Vector2( 4, 2 ), 218, Vector2( 4, 3 ), 178, Vector2( 4, 4 ), 432, Vector2( 4, 5 ), 48, Vector2( 5, 0 ), 191, Vector2( 5, 1 ), 250, Vector2( 5, 2 ), 155, Vector2( 5, 3 ), 440, Vector2( 5, 4 ), 216, Vector2( 5, 5 ), 24, Vector2( 6, 0 ), 254, Vector2( 6, 1 ), 442, Vector2( 6, 2 ), 154, Vector2( 6, 3 ), 248, Vector2( 6, 4 ), 50, Vector2( 6, 5 ), 16, Vector2( 7, 0 ), 251, Vector2( 7, 1 ), 186, Vector2( 7, 2 ), 62, Vector2( 7, 3 ), 184, Vector2( 7, 4 ), 26, Vector2( 7, 5 ), 448 ]
-1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 32, 32 )
-1/autotile/spacing = 0
-1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
-1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [  ]
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 12.7678, 14.1043, 3.23448, 14.3286, 1.55213, 8.15996, 14.0015, 8.0478 )
@@ -99,9 +75,9 @@ points = PoolVector2Array( 20.2015, 10.5998, 2.92044, 11.8919, 3.24345, 4.1396, 
 [sub_resource type="ConvexPolygonShape2D" id=11]
 points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411, 13.3521, 3.62411 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=14]
 0/name = "rocks.png 0"
-0/texture = ExtResource( 6 )
+0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 2, 8, 4 )
@@ -115,7 +91,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 0/shapes = [  ]
 0/z_index = 0
 1/name = "rocks.png 1"
-1/texture = ExtResource( 6 )
+1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 15, 1, 13, 8 )
@@ -129,7 +105,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 1/shapes = [  ]
 1/z_index = 0
 2/name = "rocks.png 2"
-2/texture = ExtResource( 6 )
+2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 4, 13, 8, 5 )
@@ -143,7 +119,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 2/shapes = [  ]
 2/z_index = 0
 3/name = "rocks.png 3"
-3/texture = ExtResource( 6 )
+3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 30, 6, 6, 5 )
@@ -157,7 +133,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 3/shapes = [  ]
 3/z_index = 0
 4/name = "rocks.png 4"
-4/texture = ExtResource( 6 )
+4/texture = ExtResource( 3 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 36, 1, 10, 5 )
@@ -171,7 +147,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 4/shapes = [  ]
 4/z_index = 0
 5/name = "rocks.png 5"
-5/texture = ExtResource( 6 )
+5/texture = ExtResource( 3 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 48, 0, 11, 7 )
@@ -185,7 +161,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 5/shapes = [  ]
 5/z_index = 0
 6/name = "rocks.png 6"
-6/texture = ExtResource( 6 )
+6/texture = ExtResource( 3 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 39, 6, 12, 7 )
@@ -199,7 +175,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 6/shapes = [  ]
 6/z_index = 0
 7/name = "rocks.png 7"
-7/texture = ExtResource( 6 )
+7/texture = ExtResource( 3 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 58, 6, 9, 5 )
@@ -213,7 +189,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 7/shapes = [  ]
 7/z_index = 0
 8/name = "rocks.png 8"
-8/texture = ExtResource( 6 )
+8/texture = ExtResource( 3 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 43, 14, 9, 5 )
@@ -227,7 +203,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 8/shapes = [  ]
 8/z_index = 0
 9/name = "rocks.png 9"
-9/texture = ExtResource( 6 )
+9/texture = ExtResource( 3 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 51, 10, 8, 5 )
@@ -241,7 +217,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 9/shapes = [  ]
 9/z_index = 0
 10/name = "rocks.png 10"
-10/texture = ExtResource( 6 )
+10/texture = ExtResource( 3 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 75, 4, 12, 7 )
@@ -255,7 +231,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 10/shapes = [  ]
 10/z_index = 0
 11/name = "rocks.png 11"
-11/texture = ExtResource( 6 )
+11/texture = ExtResource( 3 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 87, 1, 8, 4 )
@@ -269,7 +245,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 11/shapes = [  ]
 11/z_index = 0
 12/name = "rocks.png 12"
-12/texture = ExtResource( 6 )
+12/texture = ExtResource( 3 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 94, 5, 10, 7 )
@@ -283,7 +259,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 12/shapes = [  ]
 12/z_index = 0
 13/name = "rocks.png 13"
-13/texture = ExtResource( 6 )
+13/texture = ExtResource( 3 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 85, 12, 8, 4 )
@@ -297,7 +273,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 13/shapes = [  ]
 13/z_index = 0
 14/name = "rocks.png 14"
-14/texture = ExtResource( 6 )
+14/texture = ExtResource( 3 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 75, 10, 7, 3 )
@@ -311,7 +287,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 14/shapes = [  ]
 14/z_index = 0
 15/name = "rocks.png 15"
-15/texture = ExtResource( 6 )
+15/texture = ExtResource( 3 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 16, 10, 9, 7 )
@@ -325,7 +301,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 15/shapes = [  ]
 15/z_index = 0
 16/name = "smallGrass0.png 16"
-16/texture = ExtResource( 7 )
+16/texture = ExtResource( 6 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 0, 0, 8, 8 )
@@ -339,7 +315,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 16/shapes = [  ]
 16/z_index = 0
 17/name = "smallGrass1.png 17"
-17/texture = ExtResource( 8 )
+17/texture = ExtResource( 5 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 0, 0, 8, 8 )
@@ -353,7 +329,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 17/shapes = [  ]
 17/z_index = 0
 18/name = "smallGrass2.png 18"
-18/texture = ExtResource( 9 )
+18/texture = ExtResource( 7 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 0, 0, 8, 8 )
@@ -367,7 +343,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 18/shapes = [  ]
 18/z_index = 0
 19/name = "pathDecorations.png 19"
-19/texture = ExtResource( 11 )
+19/texture = ExtResource( 2 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( -1, 2, 5, 3 )
@@ -381,7 +357,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 19/shapes = [  ]
 19/z_index = 0
 20/name = "pathDecorations.png 20"
-20/texture = ExtResource( 11 )
+20/texture = ExtResource( 2 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 3, 0, 6, 4 )
@@ -395,7 +371,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 20/shapes = [  ]
 20/z_index = 0
 21/name = "pathDecorations.png 21"
-21/texture = ExtResource( 11 )
+21/texture = ExtResource( 2 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 12, -1, 5, 4 )
@@ -409,7 +385,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 21/shapes = [  ]
 21/z_index = 0
 22/name = "pathDecorations.png 22"
-22/texture = ExtResource( 11 )
+22/texture = ExtResource( 2 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
 22/region = Rect2( 10, 2, 3, 3 )
@@ -423,7 +399,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 22/shapes = [  ]
 22/z_index = 0
 23/name = "pathDecorations.png 23"
-23/texture = ExtResource( 11 )
+23/texture = ExtResource( 2 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
 23/region = Rect2( 18, 0, 5, 3 )
@@ -437,7 +413,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 23/shapes = [  ]
 23/z_index = 0
 24/name = "pathDecorations.png 24"
-24/texture = ExtResource( 11 )
+24/texture = ExtResource( 2 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
 24/region = Rect2( 23, 0, 4, 4 )
@@ -451,7 +427,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 24/shapes = [  ]
 24/z_index = 0
 25/name = "pathDecorations.png 25"
-25/texture = ExtResource( 11 )
+25/texture = ExtResource( 2 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
 25/region = Rect2( 23, 5, 4, 5 )
@@ -465,7 +441,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 25/shapes = [  ]
 25/z_index = 0
 26/name = "pathDecorations.png 26"
-26/texture = ExtResource( 11 )
+26/texture = ExtResource( 2 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
 26/region = Rect2( 32, 3, 4, 4 )
@@ -479,7 +455,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 26/shapes = [  ]
 26/z_index = 0
 27/name = "whitestone.png 27"
-27/texture = ExtResource( 15 )
+27/texture = ExtResource( 8 )
 27/tex_offset = Vector2( -4, -8 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 0, -1, 16, 17 )
@@ -500,7 +476,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 } ]
 27/z_index = 0
 28/name = "whitestone.png 28"
-28/texture = ExtResource( 15 )
+28/texture = ExtResource( 8 )
 28/tex_offset = Vector2( -4, -4 )
 28/modulate = Color( 1, 1, 1, 1 )
 28/region = Rect2( 20, 5, 10, 9 )
@@ -521,7 +497,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 } ]
 28/z_index = 0
 29/name = "whitestone.png 29"
-29/texture = ExtResource( 15 )
+29/texture = ExtResource( 8 )
 29/tex_offset = Vector2( -3, -3 )
 29/modulate = Color( 1, 1, 1, 1 )
 29/region = Rect2( 35, 6, 8, 9 )
@@ -542,7 +518,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 } ]
 29/z_index = 0
 30/name = "whitestone.png 30"
-30/texture = ExtResource( 15 )
+30/texture = ExtResource( 8 )
 30/tex_offset = Vector2( -6, -7 )
 30/modulate = Color( 1, 1, 1, 1 )
 30/region = Rect2( 0, 18, 22, 14 )
@@ -563,7 +539,7 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 } ]
 30/z_index = 0
 31/name = "whitestone.png 31"
-31/texture = ExtResource( 15 )
+31/texture = ExtResource( 8 )
 31/tex_offset = Vector2( -4, -5 )
 31/modulate = Color( 1, 1, 1, 1 )
 31/region = Rect2( 23, 19, 15, 10 )
@@ -584,35 +560,26 @@ points = PoolVector2Array( 13.3521, 8.14627, 2.69272, 8.14627, 2.69272, 3.62411,
 } ]
 31/z_index = 0
 
-[node name="World" type="YSort"]
-script = ExtResource( 2 )
-
-[node name="Toplayer" type="TileMap" parent="."]
+[node name="Chunk" type="Node2D"]
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 3 )
+script = ExtResource( 9 )
+
+[node name="ToplayerMap" type="TileMap" parent="."]
+tile_set = SubResource( 12 )
 cell_size = Vector2( 8, 8 )
 format = 1
 
-[node name="Mainmap" type="TileMap" parent="."]
-scale = Vector2( 4, 4 )
+[node name="MainMap" type="TileMap" parent="."]
 z_index = -2
-tile_set = SubResource( 1 )
+tile_set = SubResource( 13 )
 cell_size = Vector2( 8, 8 )
 format = 1
+tile_data = PoolIntArray( 0, 0, 327686 )
 
-[node name="Deco" type="TileMap" parent="."]
-scale = Vector2( 4, 4 )
+[node name="Decorations" type="TileMap" parent="."]
+visible = false
 z_index = -1
-tile_set = SubResource( 2 )
+tile_set = SubResource( 14 )
 cell_size = Vector2( 8, 8 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -851975, 31, 0, -720915, 29, 0, -524286, 27, 0, -524266, 8, 0, -393221, 9, 0, -262136, 10, 0, -131048, 9, 0, 65530, 8, 0, 393228, 9, 0, 524274, 9, 0, 589822, 30, 0 )
-
-[node name="MainCharacter" parent="." instance=ExtResource( 1 )]
-z_as_relative = false
-
-[node name="SecondTimer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="SecondTimer" to="." method="_on_SecondTimer_timeout"]

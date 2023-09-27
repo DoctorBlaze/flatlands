@@ -5,13 +5,18 @@ var dash_boost = 1
 var dash_cooldown = 0
 var hunger = 100
 var coins = 0
+
 var selected_plant = null
+var openedPlantMenu = false
+
 var selected_interactable = null
 var paper = 2 #paper is being used to learn the samples. every sample needs 1 paper to be learnt. You can find paper in chests or buy from some NPC
 var velocity = Vector2()
 
 func _ready():
+	entity_type = EntityType.Player
 	health = 75
+	speed = 256
 	print(get_parent().name)
 
 func _physics_process(delta):
@@ -37,6 +42,7 @@ func _physics_process(delta):
 		dash_cooldown = 4
 	
 	velocity = velocity.normalized()*speed
+	if velocity != Vector2(0,0): close_uis()
 	#decrease dash boost when time passes
 	if dash_boost > 1:
 		velocity = velocity * dash_boost
@@ -79,7 +85,7 @@ func _process(delta):
 
 func any_input_changes():
 	var player_dir = get_global_mouse_position()/32
-	if((player_dir-(position/32)).length() > 5): 
+	if((player_dir-(position/32)).length() > 5) or (openedPlantMenu): 
 		$AskSymbol.visible = false
 		selected_plant = null
 		return
@@ -94,6 +100,7 @@ func any_input_changes():
 	
 	if selected_plant == null:
 		$UInode/playerUI/PlantCheckMenu.visible = false
+		openedPlantMenu = false
 		
 
 
@@ -102,19 +109,10 @@ func _unhandled_input(event):
 		any_input_changes()
 		
 	if Input.is_action_just_pressed("get_plant_info") and selected_plant != null:
-		$UInode/playerUI/PlantCheckMenu.visible = true
-		$UInode/playerUI/PlantCheckMenu/Book/PlantName.text = selected_plant.get("name")
-		$UInode/playerUI/PlantCheckMenu/Book/OterInfo.text = selected_plant.get("short_desc")
-		
-		if(learned_plants.has(selected_plant.get("name"))):
-			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy learned this plant! Yay!"
-		elif(samples.has(selected_plant.get("name"))):
-			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You alredy collected this sample. Use research table to learn it."
-		else:
-			$UInode/playerUI/PlantCheckMenu/Book/SampleLabel.text = "You collected this sample. Now you can learn it on the research table."
-			samples.push_back(selected_plant.get("name"))
-			print(samples)
-			
+		openedPlantMenu = true
+		if !samples.has(selected_plant["name"]) and !learned_plants.has(selected_plant["name"]): 
+			samples.push_back(selected_plant["name"])
+		$UInode/playerUI/PlantCheckMenu.open_ui(self,selected_plant)
 	if Input.is_action_just_pressed("interact") and selected_interactable != null:
 		use_interactable()
 
@@ -141,13 +139,37 @@ func use_interactable():
 		$UInode/playerUI/ResearchTable.open_ui(self,samples)
 
 
-# research -------------------------------------------------------------------------
+# uis --------------------------------------------------------------------------
+
+func close_uis():
+	if openedPlantMenu:
+		$UInode/playerUI/PlantCheckMenu.visible = false
+		openedPlantMenu = false
+	if $UInode/playerUI/ResearchTable.visible: 
+		$UInode/playerUI/ResearchTable.close_ui()
+
+
+# research and contained items -------------------------------------------------
+#after learning, plant will be added to learned_plants and removed from samples
 var samples = []
 var learned_plants = []
 
+#materials[0] are material names. materials[1] are ammounts of materials
+var materials = {}
+
+#learn plant
 func make_research(ind):
-	if paper < 1: return false
+	if paper <= 0: return false
 	if(!learned_plants.has(samples[ind])): learned_plants.push_back(samples[ind])
 	samples.remove(ind)
 	paper -= 1
 	return true
+
+func collect_material(sel_plant):
+	if !sel_plant.has("material"): return
+	if(!materials.has(sel_plant["material"])): 
+		materials.merge({sel_plant["material"]:0},false)
+	materials[sel_plant["material"]] += 1
+	print(materials)
+	return
+

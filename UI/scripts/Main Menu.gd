@@ -1,16 +1,17 @@
 extends Control
 
-const time = 65000
+const time = 65
 
 func _ready():
 	$Sounds/ReturnSound.play()
 
 # <= Click =>
 
+
 func _on_New_Game_Button_pressed():
 	$Sounds/SelectSound.play()
 	global.sleep(time)
-	get_tree().change_scene("res://world/World.tscn")
+	get_tree().change_scene("res://UI/scenes/WorldConfig.tscn")
 
 
 func _on_Continue_Game_Button_pressed():
