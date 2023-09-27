@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/scripts/WorldSelection.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 0.662745 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.4 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="DynamicFont" id=5]
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 0.662745 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="WorldSelectionWindow" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.0
+margin_top = -251.5
+margin_right = 221.0
+margin_bottom = 251.5
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="WorldNamePanel" type="Control" parent="."]
+margin_left = 31.0
+margin_top = 40.0
+margin_right = 494.0
+margin_bottom = 91.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -49.0
+margin_top = -82.0
+margin_right = 184.0
+margin_bottom = -22.0
+
+[node name="PlayWorld" type="Button" parent="VBoxContainer2"]
+modulate = Color( 0.823529, 1, 0.337255, 1 )
+margin_right = 233.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+disabled = true
+text = "Play world"
+
+[node name="Settings" type="Button" parent="VBoxContainer2"]
+margin_top = 33.0
+margin_right = 233.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+text = "Settings"
+
+[node name="WorldNameLabel" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 269.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 2 )
+text = "Select world from list: "
+
+[node name="ScrollBG" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -187.5
+margin_right = 184.0
+margin_bottom = 152.5
+custom_styles/panel = SubResource( 8 )
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 28.0
+margin_top = 420.0
+margin_right = 160.0
+margin_bottom = 475.0
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+text = "Back"
+
+[node name="WorldListCont" type="ScrollContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -187.5
+margin_right = 184.0
+margin_bottom = 152.5
+scroll_horizontal_enabled = false
+
+[node name="WorldList" type="VBoxContainer" parent="WorldListCont"]
+
+[connection signal="pressed" from="VBoxContainer2/PlayWorld" to="." method="_on_PlayWorld_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
