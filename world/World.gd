@@ -4,6 +4,8 @@ const Chunk = preload("res://world/Chunk.gd")
 const Seasons = ["spring","summer","autumn","winter"]
 enum DayCycle {Morning,Day,Evening,Night}
 
+var Seed = 0
+
 #in seconds
 var DayLength = 1200
 var SeasonLength = 20 #in days
@@ -132,13 +134,14 @@ func getChunkStatus(x,y):
 	return -1
 		
 
-func ParseChunkTiles(x_chunk_off,y_chunk_off,MainMap,ToplayerMap):
+func ParseChunkTiles(x_chunk_off,y_chunk_off,chunk):
 	var xoff = ChunkSize * x_chunk_off
 	var yoff = ChunkSize * y_chunk_off
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
-			$Mainmap.set_cell(xoff+x, yoff+y, 0)
-			$Toplayer.set_cell(xoff+x,yoff+y,-1)
+			$Underground.set_cell(xoff+x,yoff+y,chunk.Underground[y][x])
+			$Ground.set_cell(xoff+x,yoff+y,-1)
+			$Surface.set_cell(xoff+x,yoff+y,-1)
 	
 
 
@@ -147,9 +150,10 @@ func RemoveChunkTiles(x_chunk_off,y_chunk_off):
 	var yoff = ChunkSize * y_chunk_off
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
-			$Mainmap.set_cell(xoff+x,yoff+y,-1)
-			$Toplayer.set_cell(xoff+x,yoff+y,-1)
-
+			$Underground.set_cell(xoff+x,yoff+y,-1)
+			$Ground.set_cell(xoff+x,yoff+y,-1)
+			$Surface.set_cell(xoff+x,yoff+y,-1)
+			#$Toplayer.set_cell(xoff+x,yoff+y,-1)
 
 #creates the objects of the chunk and tries to parse it
 func TryLoadChunk(x,y):
@@ -190,6 +194,7 @@ func LoadChunksUnderPlayer():
 			else: has_garbage = false
 	
 	if (isNewGen):
-		$Mainmap.update_bitmask_region()
+		$Underground.update_bitmask_region()
+		$Ground.update_bitmask_region()
 		print("gen! chunk num: ", Chunks.size())
 
