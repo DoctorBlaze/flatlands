@@ -56,5 +56,7 @@ func GenUnderground():
 
 	for yl in range(chunk_size):
 		Underground.push_back([])
+		Ground.push_back([])
 		for xl in range(chunk_size):
 				Underground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["underground"])
+				Ground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["ground"])

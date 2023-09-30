@@ -1,21 +1,32 @@
 extends Node
 
+#names of different tiles
+var GroundDictonary = {
+	"grass": 0,
+}
+var UndergroundDictonary = {
+	"white_rock": 0,
+	"repolite": 1,
+}
+
 var Biomes = [
 	{
 		"name": "plains",
 		"underground":0,
-		"top_layer":"grass",
+		"ground":0,
+		
 		"temperature": [-0.3,0.3],
 		"humidity": [-0.3,0],
 	},
 	{
 		"name": "forest",
 		"underground":1,
-		"top_layer":"grass",
+		"ground":0,
 		"temperature": [-0.3,0.3],
 		"humidity": [0,0.3],
 	}	
 ]
+
 
 func GenBiomeMap(var Seed, var xoff, var yoff, var chunk_size):
 	var BiomeMap = []
@@ -23,12 +34,12 @@ func GenBiomeMap(var Seed, var xoff, var yoff, var chunk_size):
 	var temperature = OpenSimplexNoise.new()
 	temperature.seed = Seed + 65464
 	temperature.octaves = 2
-	temperature.period = 800.0
+	temperature.period = 1000.0
 
 	var humidity = OpenSimplexNoise.new()
 	humidity.seed = Seed - 23571
-	humidity.octaves = 2
-	humidity.period = 400.0
+	humidity.octaves = 4
+	humidity.period = 500.0
 	
 	for y in range(chunk_size):
 		BiomeMap.push_back([])

@@ -87,7 +87,6 @@ texture = ExtResource( 18 )
 position = Vector2( 0, -16 )
 z_index = 5
 current = true
-zoom = Vector2( 4, 4 )
 smoothing_enabled = true
 
 [node name="dashSprite" type="AnimatedSprite" parent="."]
