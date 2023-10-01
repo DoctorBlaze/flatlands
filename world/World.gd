@@ -60,6 +60,7 @@ func LoadWorld():
 #uptates world time --------------------------------------------------------------------------------
 func _on_SecondTimer_timeout():
 	WorldTime += 1
+	print(WorldTime)
 	LoadChunksUnderPlayer()
 
 
