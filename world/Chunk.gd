@@ -8,22 +8,23 @@ var x
 var y
 
 #generated chunk variables
-var MainMap = []
-var ToplayerMap = []
-#var Decorations = []
+var Underground = null
+var Ground = null
+var Surface = null
+
+var BiomeMap
 
 
 func _ready():
 	pass
 
 
-#parse and remove chunk fron generated or loaded data ---------------------------------------------------------
+#parse and remove chunk fron generated or loaded data ----------------------------------------------
 func ParseChunkTiles():
-	if MainMap == null: return
-	ParentWorld.ParseChunkTiles(x,y,MainMap,ToplayerMap)
+	if Underground == null: return
+	ParentWorld.ParseChunkTiles(x,y,self)
 	
 func RemoveChunkTiles():
-	if MainMap == null: return
 	ParentWorld.RemoveChunkTiles(x,y)
 	
 
@@ -31,11 +32,31 @@ func RemoveChunkTiles():
 #first chunk generation ----------------------------------------------------------------------------
 #only transforms noise data into generated data. Chunk will be created, but not rendered
 func GenChunk():
-	MainMap = []
-	ToplayerMap = []
-	for y in range(chunk_size):
-		MainMap.push_back([])
-		ToplayerMap.push_back([])
-		for x in range(chunk_size):
-			MainMap[y].push_back(0)
-			MainMap[y].push_back(-1)
+	Underground = []
+	Ground = []
+	Surface = []
+	
+	GenUnderground()
+
+
+func GenUnderground():
+	
+	var temperature = OpenSimplexNoise.new()
+	temperature.seed = ParentWorld.Seed + 65464
+	temperature.octaves = 2
+	temperature.period = 400.0
+
+	
+	var humidity = OpenSimplexNoise.new()
+	humidity.seed = ParentWorld.Seed + 2357
+	humidity.octaves = 2
+	humidity.period = 200.0
+	
+	BiomeMap = Biomes.GenBiomeMap(ParentWorld.Seed,x,y,chunk_size)
+
+	for yl in range(chunk_size):
+		Underground.push_back([])
+		Ground.push_back([])
+		for xl in range(chunk_size):
+				Underground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["underground"])
+				Ground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["ground"])

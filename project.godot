@@ -21,6 +21,7 @@ global="*res://scripts/global.gd"
 settings="*res://scripts/settings.gd"
 Materials="*res://item/Materials.gd"
 WorldEnv="*res://world/WorldEnv.gd"
+Biomes="*res://world/Biomes.gd"
 
 [gui]
 
