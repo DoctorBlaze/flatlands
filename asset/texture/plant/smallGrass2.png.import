@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smallGrass2.png-befc677d98d7ea962214781684ad3130.stex"
+path="res://.import/smallGrass2.png-eb34b553693ad3a15d132fc0a2ff5ec3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/tile/smallGrass2.png"
-dest_files=[ "res://.import/smallGrass2.png-befc677d98d7ea962214781684ad3130.stex" ]
+source_file="res://asset/texture/plant/smallGrass2.png"
+dest_files=[ "res://.import/smallGrass2.png-eb34b553693ad3a15d132fc0a2ff5ec3.stex" ]
 
 [params]
 

@@ -1,7 +1,9 @@
-extends Node2D
+extends Node
 
 var ParentWorld
 var chunk_size
+
+var ChunkPlants
 
 #position (in chunks) of the chunk on the map
 var x
@@ -28,7 +30,6 @@ func RemoveChunkTiles():
 	ParentWorld.RemoveChunkTiles(x,y)
 	
 
-
 #first chunk generation ----------------------------------------------------------------------------
 #only transforms noise data into generated data. Chunk will be created, but not rendered
 func GenChunk():
@@ -36,27 +37,33 @@ func GenChunk():
 	Ground = []
 	Surface = []
 	
-	GenUnderground()
+	GenMainMap()
+	GenPlants()
 
 
-func GenUnderground():
-	
-	var temperature = OpenSimplexNoise.new()
-	temperature.seed = ParentWorld.Seed + 65464
-	temperature.octaves = 2
-	temperature.period = 400.0
-
-	
-	var humidity = OpenSimplexNoise.new()
-	humidity.seed = ParentWorld.Seed + 2357
-	humidity.octaves = 2
-	humidity.period = 200.0
-	
+func GenMainMap():
 	BiomeMap = Biomes.GenBiomeMap(ParentWorld.Seed,x,y,chunk_size)
 
 	for yl in range(chunk_size):
 		Underground.push_back([])
 		Ground.push_back([])
 		for xl in range(chunk_size):
-				Underground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["underground"])
-				Ground[yl].push_back(Biomes.Biomes[BiomeMap[yl][xl]]["ground"])
+			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
+			Underground[yl].push_back(biome["underground"])
+			Ground[yl].push_back(biome["ground"])
+
+func GenPlants():
+	ChunkPlants = []
+	var plant_noise = OpenSimplexNoise.new()
+	plant_noise.octaves = 4
+	plant_noise.period = 100.0
+	 
+	for yl in range(chunk_size):
+		ChunkPlants.push_back([])
+		for xl in range(chunk_size):
+			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
+			ChunkPlants[yl].push_back(null)
+			for plant in biome["plants"]:
+				if plant["chance"] > randf():
+					ParentWorld.GenPlacePlant(plant["plant"],xl+x*chunk_size,yl+y*chunk_size)
+					break

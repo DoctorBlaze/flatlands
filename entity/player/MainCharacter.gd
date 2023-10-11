@@ -90,6 +90,8 @@ func any_input_changes():
 		selected_plant = null
 		return
 	var res = get_parent().get_plant_at(player_dir.x,player_dir.y)
+	return
+	"""
 	if(res != null):
 		$AskSymbol.visible = true
 		$AskSymbol.position = get_local_mouse_position()
@@ -101,7 +103,7 @@ func any_input_changes():
 	if selected_plant == null:
 		$UInode/playerUI/PlantCheckMenu.visible = false
 		openedPlantMenu = false
-		
+	"""
 
 
 func _unhandled_input(event):

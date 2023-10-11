@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://asset/texture/plant/emberwood.png" type="Texture" id=1]
+
+[node name="Emberwood" type="Area2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -21.55 )

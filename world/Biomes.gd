@@ -15,17 +15,50 @@ var Biomes = [
 		"underground":0,
 		"ground":0,
 		
+		"plants":[
+			{"plant":"ferchus_tree","chance":0.00005},
+			{"plant":"pine","chance":0.00005},
+			{"plant":"perlpetal","chance":0.0005},
+			{"plant":"refledius","chance":0.0005},
+			
+			{"plant":"gifis_bush","chance":0.0004},
+			{"plant":"windwheat","chance":0.0003},
+			{"plant":"emberwood","chance":0.0001},
+			
+			{"plant":"small_grass","chance":0.01},
+			{"plant":"clover","chance":0.001},
+			],
+		
 		"temperature": [-0.3,0.3],
 		"humidity": [-0.3,0],
+	},
+	{
+		"name": "windwheat_valley",
+		"underground":1,
+		"ground":0,
+		
+		"plants":[
+			{"plant":"ferchus_tree","chance":0.0001},
+			{"plant":"windwheat","chance":0.25},
+			],
+		
+		"temperature": [-0.3,0.3],
+		"humidity": [0.5,1.0],
 	},
 	{
 		"name": "forest",
 		"underground":1,
 		"ground":0,
+		
+		"plants":[
+			{"plant":"ferchus_tree","chance":0.002}
+			],
+		
 		"temperature": [-0.3,0.3],
 		"humidity": [0,0.3],
 	}	
 ]
+
 
 
 func GenBiomeMap(var Seed, var xoff, var yoff, var chunk_size):

@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlantsList="*res://plant/PlantsDictonary.gd"
+PlantDictonary="*res://plant/PlantsDictonary.gd"
 global="*res://scripts/global.gd"
 settings="*res://scripts/settings.gd"
 Materials="*res://item/Materials.gd"
