@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bush.png-22ee32caffadec9a66b8dd7b5c2375e2.stex"
+path="res://.import/perlpetal.png-bf880719a141da1df53e2b80e926f626.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/plant/bush.png"
-dest_files=[ "res://.import/bush.png-22ee32caffadec9a66b8dd7b5c2375e2.stex" ]
+source_file="res://asset/texture/plant/perlpetal.png"
+dest_files=[ "res://.import/perlpetal.png-bf880719a141da1df53e2b80e926f626.stex" ]
 
 [params]
 

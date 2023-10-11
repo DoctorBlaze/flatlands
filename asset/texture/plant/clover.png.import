@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smallGrass1.png-b45c951ad48140393c109301cca71396.stex"
+path="res://.import/clover.png-924ff691e042f179bfa34ed3bedc9dce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/tile/smallGrass1.png"
-dest_files=[ "res://.import/smallGrass1.png-b45c951ad48140393c109301cca71396.stex" ]
+source_file="res://asset/texture/plant/clover.png"
+dest_files=[ "res://.import/clover.png-924ff691e042f179bfa34ed3bedc9dce.stex" ]
 
 [params]
 

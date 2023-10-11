@@ -6,6 +6,7 @@ enum DayCycle {Morning,Day,Evening,Night}
 
 var Seed = 0
 
+
 #in seconds
 var DayLength = 1200
 var SeasonLength = 20 #in days
@@ -19,7 +20,7 @@ var ChunkStatus = []
 
 
 #file loading and saving
-var WorldName = "cummers"
+var WorldName = "New World"
 
 var Player
 
@@ -66,6 +67,8 @@ func _on_SecondTimer_timeout():
 
 func _ready():
 	LoadWorld()
+	print(getPlantName(0))
+	print("by name:",getPlantIndexes("ferchus_tree"))
 	
 	Player = $MainCharacter
 
@@ -199,3 +202,22 @@ func LoadChunksUnderPlayer():
 		$Ground.update_bitmask_region()
 		print("gen! chunk num: ", Chunks.size())
 
+
+#plants --------------------------------------------------------------------------------------------
+func getPlantIndexes(plant_string):
+	var ret = []
+	var strin
+	for i in $Plants.tile_set.get_tiles_ids():
+		strin = $Plants.tile_set.tile_get_name(i)
+		if (strin.substr(0,strin.find(" ")-4) == plant_string):	ret.push_back(i)
+	#if(ret.size() == 0): print(plant_string, " not generated")
+	return ret
+
+func getPlantName(index):
+	var strin = $Plants.tile_set.tile_get_name(index)
+	return strin.substr(0,strin.find(" ")-4)
+	
+func GenPlacePlant(plant_string,x,y):
+	var inds = getPlantIndexes(plant_string)
+	if inds.size() <= 0: return
+	$Plants.set_cell(x,y,inds[randi()%inds.size()])
