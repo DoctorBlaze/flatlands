@@ -144,6 +144,7 @@ func ParseChunkTiles(x_chunk_off,y_chunk_off,chunk):
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
 			$Ground.set_cell(xoff+x,yoff+y,chunk.Ground[y][x])
+			$Underground.set_cell(xoff+x,yoff+y,chunk.Underground[y][x])
 	
 
 

@@ -43,14 +43,26 @@ func GenChunk():
 
 func GenMainMap():
 	BiomeMap = Biomes.GenBiomeMap(ParentWorld.Seed,x,y,chunk_size)
-
+	
+	var water = OpenSimplexNoise.new()
+	water.seed = ParentWorld.Seed/2 - 53471
+	water.octaves = 3
+	water.period = 80.0
+	
+	
 	for yl in range(chunk_size):
 		Underground.push_back([])
 		Ground.push_back([])
 		for xl in range(chunk_size):
 			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
-			#Underground[yl].push_back(biome["underground"])
-			Ground[yl].push_back(biome["ground"])
+			var w = water.get_noise_2d(chunk_size*y+yl,chunk_size*x+xl)
+			if(w > 0.5):
+				Ground[yl].push_back(-1)
+				Underground[yl].push_back(3)
+			else:
+				Ground[yl].push_back(biome["ground"])
+				Underground[yl].push_back(0)
+			
 
 
 func GenPlants():
@@ -62,7 +74,7 @@ func GenPlants():
 	for yl in range(chunk_size):
 		ChunkPlants.push_back([])
 		for xl in range(chunk_size):
-			if(Ground[yl][xl]==0):
+			if(Ground[yl][xl]!=-1):
 				var biome = Biomes.Biomes[BiomeMap[yl][xl]]
 				var freeTile = true
 				ChunkPlants[yl].push_back(null)
