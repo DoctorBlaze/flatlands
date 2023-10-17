@@ -143,9 +143,7 @@ func ParseChunkTiles(x_chunk_off,y_chunk_off,chunk):
 	var yoff = ChunkSize * y_chunk_off
 	for y in range(ChunkSize):
 		for x in range(ChunkSize):
-			$Underground.set_cell(xoff+x,yoff+y,chunk.Underground[y][x])
 			$Ground.set_cell(xoff+x,yoff+y,chunk.Ground[y][x])
-			$Surface.set_cell(xoff+x,yoff+y,-1)
 	
 
 
@@ -156,7 +154,7 @@ func RemoveChunkTiles(x_chunk_off,y_chunk_off):
 		for x in range(ChunkSize):
 			$Underground.set_cell(xoff+x,yoff+y,-1)
 			$Ground.set_cell(xoff+x,yoff+y,-1)
-			$Surface.set_cell(xoff+x,yoff+y,-1)
+			$Deco.set_cell(xoff+x,yoff+y,-1)
 			#$Toplayer.set_cell(xoff+x,yoff+y,-1)
 
 #creates the objects of the chunk and tries to parse it
@@ -221,3 +219,21 @@ func GenPlacePlant(plant_string,x,y):
 	var inds = getPlantIndexes(plant_string)
 	if inds.size() <= 0: return
 	$Plants.set_cell(x,y,inds[randi()%inds.size()])
+	
+	
+func getDecoIndexes(dstring):
+	var ret = []
+	var strin
+	for i in $Deco.tile_set.get_tiles_ids():
+		strin = $Deco.tile_set.tile_get_name(i)
+		if (strin.substr(0,strin.find(" ")-4) == dstring):	ret.push_back(i)
+	#if(ret.size() == 0): print(plant_string, " not generated")
+	return ret
+	
+func GenPlaceDeco(dstring,x,y):
+	var inds = getDecoIndexes(dstring)
+	if inds.size() <= 0: 
+		print(dstring + " equals 0")
+		return
+	$Deco.set_cell(x,y,inds[randi()%inds.size()])
+	

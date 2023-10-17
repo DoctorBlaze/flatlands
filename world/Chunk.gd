@@ -49,8 +49,9 @@ func GenMainMap():
 		Ground.push_back([])
 		for xl in range(chunk_size):
 			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
-			Underground[yl].push_back(biome["underground"])
+			#Underground[yl].push_back(biome["underground"])
 			Ground[yl].push_back(biome["ground"])
+
 
 func GenPlants():
 	ChunkPlants = []
@@ -61,9 +62,19 @@ func GenPlants():
 	for yl in range(chunk_size):
 		ChunkPlants.push_back([])
 		for xl in range(chunk_size):
-			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
-			ChunkPlants[yl].push_back(null)
-			for plant in biome["plants"]:
-				if plant["chance"] > randf():
-					ParentWorld.GenPlacePlant(plant["plant"],xl+x*chunk_size,yl+y*chunk_size)
-					break
+			if(Ground[yl][xl]==0):
+				var biome = Biomes.Biomes[BiomeMap[yl][xl]]
+				var freeTile = true
+				ChunkPlants[yl].push_back(null)
+				for plant in biome["plants"]:
+					if plant["chance"] > randf():
+						ParentWorld.GenPlacePlant(plant["plant"],xl+x*chunk_size,yl+y*chunk_size)
+						freeTile = false
+						break
+				if freeTile:
+					for deco in biome["deco"]:
+						if deco["chance"] > randf():
+							ParentWorld.GenPlaceDeco(deco["deco"],xl+x*chunk_size,yl+y*chunk_size)
+							freeTile = false
+							break
+	
