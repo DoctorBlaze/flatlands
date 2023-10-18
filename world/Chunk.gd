@@ -56,7 +56,7 @@ func GenMainMap():
 		for xl in range(chunk_size):
 			var biome = Biomes.Biomes[BiomeMap[yl][xl]]
 			var w = water.get_noise_2d(chunk_size*y+yl,chunk_size*x+xl)
-			if(w > 0.5):
+			if(w > 0.45):
 				Ground[yl].push_back(-1)
 				Underground[yl].push_back(3)
 			else:
