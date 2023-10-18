@@ -18,8 +18,13 @@ func _ready():
 	entity_type = EntityType.Mob
 
 func _physics_process(delta):
-	if(targetPosition != null) and mobWalkState != MobWalkState.idle:
+	if(targetPosition != null) and mobWalkState == MobWalkState.walkTowards:
 		var velocity = Vector2(targetPosition - position).normalized() * speed
+		move_and_slide(velocity)
+		if(position.distance_to(targetPosition) < allowablePosDistance):
+			mobWalkState = MobWalkState.idle
+	elif(targetPosition != null) and mobWalkState == MobWalkState.walkAround:
+		var velocity = Vector2(targetPosition - position).normalized() * speed * 0.64
 		move_and_slide(velocity)
 		if(position.distance_to(targetPosition) < allowablePosDistance):
 			mobWalkState = MobWalkState.idle
@@ -43,8 +48,8 @@ func _UpdateAI():
 	if(mobState == MobState.lookForTarget):
 		$Timer.wait_time = randi()%5+1
 		mobWalkState = MobWalkState.walkAround
-		targetPosition = GetPosAround(position,50)
+		targetPosition = GetPosAround(position,80)
 	if(mobState == MobState.interactTarget) and position.distance_to(targetNode.position) > 10:
-		$Timer.wait_time = 0.25
+		$Timer.wait_time = randf()/2+0.2
 		mobWalkState = MobWalkState.walkTowards
-		targetPosition = GetPosAround(targetNode.position,100)
+		targetPosition = GetPosAround(targetNode.position,500)

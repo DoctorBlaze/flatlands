@@ -646,4 +646,16 @@ autostart = true
 [node name="Node2D" parent="." instance=ExtResource( 14 )]
 position = Vector2( -761, -253 )
 
+[node name="Node2D2" parent="." instance=ExtResource( 14 )]
+position = Vector2( -761, -253 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 14 )]
+position = Vector2( -761, -253 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 14 )]
+position = Vector2( -761, -253 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 14 )]
+position = Vector2( -761, -253 )
+
 [connection signal="timeout" from="SecondTimer" to="." method="_on_SecondTimer_timeout"]
