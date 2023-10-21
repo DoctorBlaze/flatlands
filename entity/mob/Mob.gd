@@ -19,15 +19,19 @@ func _ready():
 
 func _physics_process(delta):
 	if(targetPosition != null) and mobWalkState == MobWalkState.walkTowards:
+		$SlimeSprite.play("move")
 		var velocity = Vector2(targetPosition - position).normalized() * speed
 		move_and_slide(velocity)
 		if(position.distance_to(targetPosition) < allowablePosDistance):
 			mobWalkState = MobWalkState.idle
 	elif(targetPosition != null) and mobWalkState == MobWalkState.walkAround:
+		$SlimeSprite.play("move")
 		var velocity = Vector2(targetPosition - position).normalized() * speed * 0.64
 		move_and_slide(velocity)
 		if(position.distance_to(targetPosition) < allowablePosDistance):
 			mobWalkState = MobWalkState.idle
+	else:
+		$SlimeSprite.play("default")
 
 func _on_SearchArea_body_entered(body):
 	if(mobState == MobState.lookForTarget):
@@ -35,6 +39,7 @@ func _on_SearchArea_body_entered(body):
 			targetNode = body
 			mobState = MobState.interactTarget
 			print("found target")
+			_UpdateAI()
 
 func GetPosAround(pos, radius):
 	return pos + Vector2(randf()-0.5,randf()-0.5).normalized()*radius
@@ -52,4 +57,4 @@ func _UpdateAI():
 	if(mobState == MobState.interactTarget) and position.distance_to(targetNode.position) > 10:
 		$Timer.wait_time = randf()/2+0.2
 		mobWalkState = MobWalkState.walkTowards
-		targetPosition = GetPosAround(targetNode.position,500)
+		targetPosition = GetPosAround(targetNode.position,50)
