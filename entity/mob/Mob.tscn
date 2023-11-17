@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://entity/mob/Slime.gd" type="Script" id=1]
+[ext_resource path="res://entity/mob/Mob.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/entity/blue_slime/jump_1.png" type="Texture" id=2]
 [ext_resource path="res://asset/texture/entity/blue_slime/idle_0.png" type="Texture" id=3]
 [ext_resource path="res://asset/texture/entity/blue_slime/idle_1.png" type="Texture" id=4]
 [ext_resource path="res://asset/texture/entity/blue_slime/jump_0.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.83333, 2.16667 )
+extents = Vector2( 4.33333, 2.66667 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 133.333, 135.833 )
@@ -19,18 +19,18 @@ animations = [ {
 "name": "default",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
 } ]
 
-[node name="BlueSlime" type="KinematicBody2D"]
+[node name="Node2D" type="KinematicBody2D"]
 scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.166667, 1.83333 )
+position = Vector2( -0.333333, 2 )
 shape = SubResource( 1 )
 
 [node name="SearchArea" type="Area2D" parent="."]
@@ -47,10 +47,5 @@ autostart = true
 frames = SubResource( 3 )
 playing = true
 
-[node name="JumpTimer" type="Timer" parent="."]
-wait_time = 0.75
-autostart = true
-
 [connection signal="body_entered" from="SearchArea" to="." method="_on_SearchArea_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_UpdateAI"]
-[connection signal="timeout" from="JumpTimer" to="." method="JumpInterval"]

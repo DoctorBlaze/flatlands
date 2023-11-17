@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/amberwood_flower.png-eaa53040581e6498899e2050b7f91d16.stex"
+path="res://.import/emberwood_flower.png-005901d6bd4accd03c7af117d17de011.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/material/amberwood_flower.png"
-dest_files=[ "res://.import/amberwood_flower.png-eaa53040581e6498899e2050b7f91d16.stex" ]
+source_file="res://asset/texture/material/emberwood_flower.png"
+dest_files=[ "res://.import/emberwood_flower.png-005901d6bd4accd03c7af117d17de011.stex" ]
 
 [params]
 

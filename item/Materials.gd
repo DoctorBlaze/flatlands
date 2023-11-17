@@ -1,15 +1,15 @@
 extends Node
 
 var Materials = {
-	"amberwood_flower":{
-		"name":"Amberwood flower",
+	"emberwood_flower":{
+		"name":"Emberwood flower",
 		"short_desc":"Big white flower. All heat concentrated at the middle.",
 		
 		"taste":"Tastes like freakin' fire! What are you eating?",
 		"eat_effect":"ignite",
 		"hunger":2,
 		
-		"icon": Image.new().load("res://asset/texture/material/amberwood_flower.png"),
+		"icon": Image.new().load("res://asset/texture/material/emberwood_flower.png"),
 		"alchemy": {"ignis":0}
 	},
 	"cinnarod_flower":{
