@@ -30,3 +30,4 @@ func recieve_damage(dmg):
 		
 	if(dmg < 0): return
 	health -= (dmg / resistance)
+
