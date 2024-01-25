@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wilhelminessounds_nighttime.ogg-eadd4e6a9672e4e4fd729cde10886659.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/wilhelminessounds_nighttime.ogg"
+dest_files=[ "res://.import/wilhelminessounds_nighttime.ogg-eadd4e6a9672e4e4fd729cde10886659.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingdesert_desertsound4.ogg-b97135ce4db27a3a96bd55aa8daba6fe.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingdesert_desertsound4.ogg"
+dest_files=[ "res://.import/livingdesert_desertsound4.ogg-b97135ce4db27a3a96bd55aa8daba6fe.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

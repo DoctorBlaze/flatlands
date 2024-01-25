@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_mediterran2.ogg-7ac9eac4dd888eac882d1b7cb27682f2.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_mediterran2.ogg"
+dest_files=[ "res://.import/naturalbiomes_mediterran2.ogg-7ac9eac4dd888eac882d1b7cb27682f2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

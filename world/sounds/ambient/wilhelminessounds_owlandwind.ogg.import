@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wilhelminessounds_owlandwind.ogg-d7ff01d765f6841a8ea5480b216bf318.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/wilhelminessounds_owlandwind.ogg"
+dest_files=[ "res://.import/wilhelminessounds_owlandwind.ogg-d7ff01d765f6841a8ea5480b216bf318.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

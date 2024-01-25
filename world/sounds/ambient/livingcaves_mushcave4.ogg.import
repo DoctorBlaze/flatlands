@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingcaves_mushcave4.ogg-a35e67f00bb13718b4df76c454c8f80a.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingcaves_mushcave4.ogg"
+dest_files=[ "res://.import/livingcaves_mushcave4.ogg-a35e67f00bb13718b4df76c454c8f80a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

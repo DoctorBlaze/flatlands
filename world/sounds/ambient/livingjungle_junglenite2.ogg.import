@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingjungle_junglenite2.ogg-5e1fc7231da260a5f06b0b3cc3b7d4a3.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingjungle_junglenite2.ogg"
+dest_files=[ "res://.import/livingjungle_junglenite2.ogg-5e1fc7231da260a5f06b0b3cc3b7d4a3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

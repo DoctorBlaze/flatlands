@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_wetsavanna2.ogg-659b52f73f8ef2e15e9a938da749a721.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_wetsavanna2.ogg"
+dest_files=[ "res://.import/naturalbiomes_wetsavanna2.ogg-659b52f73f8ef2e15e9a938da749a721.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

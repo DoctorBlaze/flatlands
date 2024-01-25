@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingfloatlands_paleodesert2.ogg-3160d0e2fc360937a68bdadd9af61faf.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingfloatlands_paleodesert2.ogg"
+dest_files=[ "res://.import/livingfloatlands_paleodesert2.ogg-3160d0e2fc360937a68bdadd9af61faf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

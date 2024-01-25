@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_bambooforest3.ogg-f7e3c1087dd951303234f6fae744e09c.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_bambooforest3.ogg"
+dest_files=[ "res://.import/naturalbiomes_bambooforest3.ogg-f7e3c1087dd951303234f6fae744e09c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

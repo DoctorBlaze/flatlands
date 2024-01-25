@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entity/player/MainCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/World.gd" type="Script" id=2]
@@ -6,12 +6,17 @@
 [ext_resource path="res://asset/texture/tile/whitestone_underground.png" type="Texture" id=4]
 [ext_resource path="res://asset/texture/tile/granite_underground.png" type="Texture" id=5]
 [ext_resource path="res://asset/texture/tile/rocks.png" type="Texture" id=6]
+[ext_resource path="res://world/sounds/ambient/naturalbiomes_heath.ogg" type="AudioStream" id=7]
+[ext_resource path="res://world/sounds/ambient/naturalbiomes_heath5.ogg" type="AudioStream" id=8]
+[ext_resource path="res://world/sounds/ambient/naturalbiomes_heath4.ogg" type="AudioStream" id=9]
 [ext_resource path="res://asset/texture/tile/dirt_underground.png" type="Texture" id=10]
 [ext_resource path="res://asset/texture/tile/pathDecorations.png" type="Texture" id=11]
 [ext_resource path="res://asset/texture/tile/water.png" type="Texture" id=12]
 [ext_resource path="res://plant/Plants.tres" type="TileSet" id=13]
 [ext_resource path="res://entity/mob/BlueSlime.tscn" type="PackedScene" id=14]
 [ext_resource path="res://asset/texture/tile/whitestone.png" type="Texture" id=15]
+[ext_resource path="res://world/sounds/ambient/naturalbiomes_heath2.ogg" type="AudioStream" id=16]
+[ext_resource path="res://world/sounds/ambient/naturalbiomes_heath3.ogg" type="AudioStream" id=17]
 
 [sub_resource type="TileSet" id=12]
 0/name = "whitestone_underground.png 0"
@@ -601,5 +606,24 @@ position = Vector2( 790, 56 )
 
 [node name="BlueSlime5" parent="." instance=ExtResource( 14 )]
 position = Vector2( 630, -251 )
+
+[node name="Sounds" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Ambient1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+
+[node name="Ambient2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 16 )
+
+[node name="Ambient3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 17 )
+
+[node name="Ambient4" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+
+[node name="Ambient5" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
 
 [connection signal="timeout" from="SecondTimer" to="." method="_on_SecondTimer_timeout"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingfloatlands_giantforest6.ogg-7c83bd8baf7730f69ee41f4e9f1fd937.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingfloatlands_giantforest6.ogg"
+dest_files=[ "res://.import/livingfloatlands_giantforest6.ogg-7c83bd8baf7730f69ee41f4e9f1fd937.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

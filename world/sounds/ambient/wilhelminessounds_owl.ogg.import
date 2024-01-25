@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wilhelminessounds_owl.ogg-bc84dcfc66c63567b339a343e2e832e9.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/wilhelminessounds_owl.ogg"
+dest_files=[ "res://.import/wilhelminessounds_owl.ogg-bc84dcfc66c63567b339a343e2e832e9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

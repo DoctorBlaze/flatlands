@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingjungle_jungleday.ogg-a8d72f9d9a28ef0d6a563b83a85d22e3.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingjungle_jungleday.ogg"
+dest_files=[ "res://.import/livingjungle_jungleday.ogg-a8d72f9d9a28ef0d6a563b83a85d22e3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://asset/texture/player/sprites/playerFront.png" type="Texture" id=1]
 [ext_resource path="res://asset/texture/player/sprites/playerSideWalk.png" type="Texture" id=2]
@@ -20,6 +20,13 @@
 [ext_resource path="res://asset/texture/player/sprites/shadow.png" type="Texture" id=18]
 [ext_resource path="res://UI/uis.tscn" type="PackedScene" id=19]
 [ext_resource path="res://UI/scenes/InGame Menu.tscn" type="PackedScene" id=20]
+[ext_resource path="res://world/sounds/default_grass_footstep.1.ogg" type="AudioStream" id=21]
+[ext_resource path="res://world/sounds/default_grass_footstep.3.ogg" type="AudioStream" id=22]
+[ext_resource path="res://world/sounds/default_grass_footstep.2.ogg" type="AudioStream" id=23]
+[ext_resource path="res://entity/player/sounds/maincharacter_hurt_2.ogg" type="AudioStream" id=24]
+[ext_resource path="res://entity/player/sounds/maincharacter_hurt_1.ogg" type="AudioStream" id=25]
+[ext_resource path="res://entity/player/sounds/maincharacter_damage.ogg" type="AudioStream" id=26]
+[ext_resource path="res://entity/player/sounds/dash.ogg" type="AudioStream" id=27]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10.5, 9.5 )
@@ -119,6 +126,31 @@ shape = SubResource( 4 )
 
 [node name="InGame Menu" parent="." instance=ExtResource( 20 )]
 visible = false
+
+[node name="Sounds" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Footstep1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 21 )
+
+[node name="Footstep2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 23 )
+
+[node name="Footstep3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 22 )
+
+[node name="Hurt1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 25 )
+
+[node name="Hurt2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 24 )
+
+[node name="Damage" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 26 )
+
+[node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 27 )
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_InteractArea_area_exited"]

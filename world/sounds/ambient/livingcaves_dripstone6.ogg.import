@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingcaves_dripstone6.ogg-6f5fb0260c2be64d3747cb5c0ea091aa.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingcaves_dripstone6.ogg"
+dest_files=[ "res://.import/livingcaves_dripstone6.ogg-6f5fb0260c2be64d3747cb5c0ea091aa.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
