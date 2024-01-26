@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingfloatlands_coldsteppe6.ogg-2f410270b2cf94939041d2576bf14cca.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingfloatlands_coldsteppe6.ogg"
+dest_files=[ "res://.import/livingfloatlands_coldsteppe6.ogg-2f410270b2cf94939041d2576bf14cca.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

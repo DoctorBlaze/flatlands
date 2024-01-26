@@ -13,6 +13,11 @@ var selected_interactable = null
 var paper = 2 #paper is being used to learn the samples. every sample needs 1 paper to be learnt. You can find paper in chests or buy from some NPC
 var velocity = Vector2()
 
+var steps_cooldown = 0 # for correct playing footsteps sounds
+
+const steps_sounds_qty = 3
+const hurt_sounds_qty = 2
+
 func _ready():
 	entity_type = EntityType.Player
 	health = 75
@@ -38,6 +43,7 @@ func _physics_process(delta):
 	#dashes _____________________________________________________________
 	if Input.is_action_just_pressed("dash") and dash_cooldown <= 0:
 		$dashSprite.play("dash")
+		$Sounds/Dash.play()
 		dash_boost = 4
 		dash_cooldown = 4
 	
@@ -57,8 +63,21 @@ func _physics_process(delta):
 	init_animations(velocity)
 	if not global.is_paused:
 		move_and_slide(velocity)
+		if velocity:
+			play_footstep_sound()
+
+
+func play_footstep_sound():
+	steps_cooldown += 1
+	if steps_cooldown > 20:
+		steps_cooldown = 0
+		randomize()
+		var footstep_index = str((randi() % steps_sounds_qty) + 1)
+		print(footstep_index)
+		get_node("Sounds/Footstep" + footstep_index).play()
 	
-	
+
+
 func init_animations(velocity):
 	YSort 
 	if velocity.y > 0 and not global.is_paused:
@@ -175,3 +194,26 @@ func collect_material(sel_plant):
 	print(materials)
 	return
 
+# OVERRIDE: health and damage ------------------------------------------------------------
+func recieve_damage(dmg):
+	
+	if(hurt_cooldown > 0): return
+	hurt_cooldown = 0.5
+	
+	
+	var res_dmg = 0
+	if(dmg > armor):
+		res_dmg = dmg - armor/100
+	else:
+		res_dmg = dmg - armor/50
+	
+	if(dmg < 0): return
+	health -= (dmg / resistance)
+	play_damage_sound()
+
+
+func play_damage_sound():
+	randomize()
+	var hurt_index = str((randi() % hurt_sounds_qty) + 1)
+	$Sounds/Damage.play()
+	get_node("Sounds/Hurt" + hurt_index).play()

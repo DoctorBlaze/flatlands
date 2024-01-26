@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_heath.ogg-35094ce9f2bc9020127fa64a410c226a.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_heath.ogg"
+dest_files=[ "res://.import/naturalbiomes_heath.ogg-35094ce9f2bc9020127fa64a410c226a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingcaves_icecave.ogg-d6a9d74262cbe0a3f6d845f48dfecabc.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingcaves_icecave.ogg"
+dest_files=[ "res://.import/livingcaves_icecave.ogg-d6a9d74262cbe0a3f6d845f48dfecabc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

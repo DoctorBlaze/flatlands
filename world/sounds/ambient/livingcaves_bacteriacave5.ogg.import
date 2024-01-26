@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingcaves_bacteriacave5.ogg-21f84c1e855368329b6e31b3dd0606bb.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingcaves_bacteriacave5.ogg"
+dest_files=[ "res://.import/livingcaves_bacteriacave5.ogg-21f84c1e855368329b6e31b3dd0606bb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

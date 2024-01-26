@@ -7,23 +7,26 @@ enum DayCycle {Morning,Day,Evening,Night}
 var Seed = 0
 
 
-#in seconds
+# in seconds
 var DayLength = 1200
 var SeasonLength = 20 #in days
 var WorldTime = 0
 
-#world gen 
+# world gen 
 var ChunkSize = 4 #in tiles
 var WorldScaling = 4
 var Chunks = []
 var ChunkStatus = []
 
 
-#file loading and saving
+# file loading and saving
 var WorldName = "New World"
 
 var Player
 
+# ambient
+var ambient_cooldown = 0
+const ambient_sounds_qty = 5
 
 #save and load world -------------------------------------------------------------------------------
 func SaveWorld():
@@ -238,3 +241,12 @@ func GenPlaceDeco(dstring,x,y):
 		return
 	$Deco.set_cell(x,y,inds[randi()%inds.size()])
 	
+# Ambient
+func _process(delta):
+	ambient_cooldown += 1
+	if ambient_cooldown > 200:
+		ambient_cooldown = 0
+		randomize()
+		var ambient_index = str((randi() % ambient_sounds_qty) + 1)
+		get_node("Sounds/Ambient" + ambient_index).play()
+

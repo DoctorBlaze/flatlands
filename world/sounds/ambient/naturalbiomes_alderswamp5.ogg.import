@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_alderswamp5.ogg-07dade645820ca26d9b8a193f0307fd2.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_alderswamp5.ogg"
+dest_files=[ "res://.import/naturalbiomes_alderswamp5.ogg-07dade645820ca26d9b8a193f0307fd2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

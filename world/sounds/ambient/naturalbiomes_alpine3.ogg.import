@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_alpine3.ogg-e579ed3885c7ef150e59a5d33cb26c2c.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_alpine3.ogg"
+dest_files=[ "res://.import/naturalbiomes_alpine3.ogg-e579ed3885c7ef150e59a5d33cb26c2c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

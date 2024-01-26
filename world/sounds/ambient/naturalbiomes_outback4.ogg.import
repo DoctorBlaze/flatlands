@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/naturalbiomes_outback4.ogg-035bd3be1912f584d617552cb567f929.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/naturalbiomes_outback4.ogg"
+dest_files=[ "res://.import/naturalbiomes_outback4.ogg-035bd3be1912f584d617552cb567f929.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

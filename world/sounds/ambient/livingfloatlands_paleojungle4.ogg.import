@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/livingfloatlands_paleojungle4.ogg-8be69d39f26f0904444bb8be3ffb0d3c.oggstr"
+
+[deps]
+
+source_file="res://world/sounds/ambient/livingfloatlands_paleojungle4.ogg"
+dest_files=[ "res://.import/livingfloatlands_paleojungle4.ogg-8be69d39f26f0904444bb8be3ffb0d3c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
