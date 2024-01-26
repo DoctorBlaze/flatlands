@@ -64,17 +64,17 @@ var Biomes = [
 
 
 
-func GenBiomeMap(var Seed, var xoff, var yoff, var chunk_size):
+func GenBiomeMap(Seed, xoff, yoff, chunk_size):
 	var BiomeMap = []
 	
-	var temperature = OpenSimplexNoise.new()
+	var temperature = FastNoiseLite.new()
 	temperature.seed = Seed + 65464
-	temperature.octaves = 2
+	temperature.fractal_octaves = 2
 	temperature.period = 1000.0
 
-	var humidity = OpenSimplexNoise.new()
+	var humidity = FastNoiseLite.new()
 	humidity.seed = Seed - 23571
-	humidity.octaves = 4
+	humidity.fractal_octaves = 4
 	humidity.period = 500.0
 	
 	for y in range(chunk_size):

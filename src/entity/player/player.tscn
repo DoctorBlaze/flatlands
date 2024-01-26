@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://mlgqep2mdkfo"]
+
+[ext_resource type="Script" path="res://entity/player/Player.cs" id="1_mj5gv"]
+[ext_resource type="PackedScene" uid="uid://cvxp8n6m843qt" path="res://testModels/playerDefault.tscn" id="2_y4rmw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mv0rj"]
+size = Vector3(0.273979, 0.725298, 0.177832)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k1m0p"]
+radius = 0.220156
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_mj5gv")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36461, 0)
+shape = SubResource("BoxShape3D_mv0rj")
+
+[node name="CheckerArea" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 128
+collision_priority = 0.0
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckerArea"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_k1m0p")
+
+[node name="playerMesh" parent="." instance=ExtResource("2_y4rmw")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[connection signal="body_entered" from="CheckerArea" to="." method="OnItemEntered"]
+[connection signal="body_exited" from="CheckerArea" to="." method="OnItemExited"]

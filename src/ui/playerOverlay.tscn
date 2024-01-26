@@ -1,0 +1,144 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwam2otfus27o"]
+
+[ext_resource type="Texture2D" uid="uid://c6qrpjkgil5ci" path="res://ui/icons/speedSmall.png" id="1_w270k"]
+[ext_resource type="Texture2D" uid="uid://dxs1bhslmqbeq" path="res://ui/icons/armorSmall.png" id="2_aucsq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6vjf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chdqa"]
+bg_color = Color(0, 0, 0, 0.0823529)
+corner_radius_bottom_right = 8
+
+[sub_resource type="Theme" id="Theme_ej16e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3xcl"]
+bg_color = Color(1, 0.427451, 0.341176, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="playerOverlay" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k6vjf")
+
+[node name="statsPanel" type="Panel" parent="."]
+z_index = -1
+custom_minimum_size = Vector2(320, 64)
+layout_mode = 2
+offset_right = 320.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_chdqa")
+
+[node name="hpBar" type="ProgressBar" parent="statsPanel"]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 278.0
+offset_bottom = 31.0
+size_flags_vertical = 1
+theme = SubResource("Theme_ej16e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q3xcl")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="hpLabel" type="Label" parent="statsPanel/hpBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="heart" type="Label" parent="statsPanel/hpBar"]
+modulate = Color(1, 0.427451, 0.341176, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -15.5
+offset_right = 40.0
+offset_bottom = 29.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 28
+text = "♥"
+
+[node name="addStats" type="HBoxContainer" parent="statsPanel"]
+layout_mode = 1
+offset_left = 13.245
+offset_top = 31.56
+offset_right = 85.245
+offset_bottom = 57.56
+theme_override_constants/separation = 0
+
+[node name="spdIcn" type="TextureRect" parent="statsPanel/addStats"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_w270k")
+expand_mode = 2
+
+[node name="speedNum" type="Label" parent="statsPanel/addStats"]
+layout_mode = 2
+text = "1
+"
+
+[node name="armIcn" type="TextureRect" parent="statsPanel/addStats"]
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_aucsq")
+expand_mode = 2
+
+[node name="armorNum" type="Label" parent="statsPanel/addStats"]
+layout_mode = 2
+text = "1"
+
+[node name="openBook" type="Button" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -47.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "book"
+
+[node name="pickUpLabel" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = -64.0
+offset_right = 232.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Click \"F\" to 
+pick up item"
+vertical_alignment = 2

@@ -1,21 +1,21 @@
 [gd_resource type="TileSet" load_steps=13 format=2]
 
-[ext_resource path="res://asset/texture/plant/landribb.png" type="Texture" id=1]
-[ext_resource path="res://asset/texture/plant/windwheat.png" type="Texture" id=2]
-[ext_resource path="res://asset/texture/plant/cinnarod.png" type="Texture" id=3]
-[ext_resource path="res://asset/texture/plant/gifis_bush.png" type="Texture" id=4]
-[ext_resource path="res://asset/texture/plant/ferchus_tree.png" type="Texture" id=5]
-[ext_resource path="res://asset/texture/plant/small_grass.png" type="Texture" id=6]
-[ext_resource path="res://asset/texture/plant/perlpetal.png" type="Texture" id=7]
-[ext_resource path="res://asset/texture/plant/pine.png" type="Texture" id=8]
-[ext_resource path="res://asset/texture/plant/refledius.png" type="Texture" id=9]
-[ext_resource path="res://asset/texture/plant/clover.png" type="Texture" id=10]
+[ext_resource path="res://asset/texture/plant/landribb.png" type="Texture2D" id=1]
+[ext_resource path="res://asset/texture/plant/windwheat.png" type="Texture2D" id=2]
+[ext_resource path="res://asset/texture/plant/cinnarod.png" type="Texture2D" id=3]
+[ext_resource path="res://asset/texture/plant/gifis_bush.png" type="Texture2D" id=4]
+[ext_resource path="res://asset/texture/plant/ferchus_tree.png" type="Texture2D" id=5]
+[ext_resource path="res://asset/texture/plant/small_grass.png" type="Texture2D" id=6]
+[ext_resource path="res://asset/texture/plant/perlpetal.png" type="Texture2D" id=7]
+[ext_resource path="res://asset/texture/plant/pine.png" type="Texture2D" id=8]
+[ext_resource path="res://asset/texture/plant/refledius.png" type="Texture2D" id=9]
+[ext_resource path="res://asset/texture/plant/clover.png" type="Texture2D" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 7, 17, 1, 17, 1, 15, 7, 15 )
+points = PackedVector2Array( 7, 17, 1, 17, 1, 15, 7, 15 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 11, 23, 2, 23, 2, 20, 11, 20 )
+points = PackedVector2Array( 11, 23, 2, 23, 2, 20, 11, 20 )
 
 [resource]
 0/name = "cinnarod.png 0"

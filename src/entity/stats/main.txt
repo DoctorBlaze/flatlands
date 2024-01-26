@@ -1,0 +1,79 @@
+using Godot;
+using System;
+using Entity;
+
+namespace Entity{
+
+/// <summary>
+/// mode affects on calculating final entity stats. 
+/// add mode means this stats will be added to entity stats; 
+/// mul mode means entity stats will be multiplied by this one;
+/// </summary>
+
+/// <summary>
+/// stats are used for entities and equipment; 
+/// </summary>
+public struct Stats{
+    public float speed; 
+    public float jumpVelocity;
+    public float maxHP;
+    public float regen;
+    public float damage;
+    public float damageResistance;
+    public float armor;
+
+
+
+    public Stats(){
+        speed = 0.0f;
+        maxHP = 0.0f;
+        regen = 0.0f;
+        damage = 0.0f;
+        damageResistance = 0.0f;
+        jumpVelocity = 0.0f;
+        armor = 0.0f;
+        changeMode = StatMode.add;
+    }
+
+
+    public static Stats EntityBasicStats(){
+        Stats ret = new Stats();
+        ret.maxHP = 100.0f;
+        ret.regen = 0.1f;
+        ret.speed = 5.0f;
+        ret.jumpVelocity = 4.8f;
+        ret.damage = 1.0f;
+        ret.armor = 0.0f;
+        return ret;
+    }
+   
+
+    public static Stats operator +(Stats st1,Stats st2){
+        Stats ret = new Stats();
+
+        ret.speed = st1.speed + st2.speed;
+        ret.jumpVelocity = st1.jumpVelocity + st2.jumpVelocity;
+        ret.maxHP = st1.maxHP + st2.maxHP;
+        ret.regen = st1.regen + st2.regen;
+        ret.damage = st1.damage + st2.damage;
+        ret.damageResistance = st1.damageResistance + st2.damageResistance;
+        ret.armor = st1.armor + st2.armor;
+        return ret;
+    }
+
+    public static Stats operator *(Stats st1,Stats st2){
+        Stats ret = new Stats();
+
+        ret.speed = st1.speed * st2.speed;
+        ret.jumpVelocity = st1.jumpVelocity * st2.jumpVelocity;
+        ret.maxHP = st1.maxHP * st2.maxHP;
+        ret.regen = st1.regen * st2.regen;
+        ret.damage = st1.damage * st2.damage;
+        ret.damageResistance = st1.damageResistance * st2.damageResistance;
+        ret.armor = st1.armor * st2.armor;
+        return ret;
+    }
+
+}
+
+}

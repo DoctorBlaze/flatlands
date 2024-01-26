@@ -44,9 +44,9 @@ func GenChunk():
 func GenMainMap():
 	BiomeMap = Biomes.GenBiomeMap(ParentWorld.Seed,x,y,chunk_size)
 	
-	var water = OpenSimplexNoise.new()
+	var water = FastNoiseLite.new()
 	water.seed = ParentWorld.Seed/2 - 53471
-	water.octaves = 3
+	water.fractal_octaves = 3
 	water.period = 80.0
 	
 	
@@ -67,8 +67,8 @@ func GenMainMap():
 
 func GenPlants():
 	ChunkPlants = []
-	var plant_noise = OpenSimplexNoise.new()
-	plant_noise.octaves = 4
+	var plant_noise = FastNoiseLite.new()
+	plant_noise.fractal_octaves = 4
 	plant_noise.period = 100.0
 	 
 	for yl in range(chunk_size):

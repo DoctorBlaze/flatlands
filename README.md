@@ -4,4 +4,5 @@ world is being procedurally generated from chunks. It has some biomes, but gener
 
 ## magic system:
 
+## inventory system
 

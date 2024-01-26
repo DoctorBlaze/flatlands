@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ii68xb0mtcu7"]
+
+[ext_resource type="Script" path="res://inventory/droppedItem.cs" id="1_sbubp"]
+
+[node name="droppedItem" type="RigidBody3D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_sbubp")

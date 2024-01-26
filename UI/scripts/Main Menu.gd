@@ -10,29 +10,28 @@ func _ready():
 
 func _on_New_Game_Button_pressed():
 	$Sounds/SelectSound.play()
-	get_tree().change_scene("res://UI/scenes/WorldConfig.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/WorldConfig.tscn")
 
 
 func _on_Continue_Game_Button_pressed():
 	$Sounds/LoadSound.play()
-	get_tree().change_scene("res://UI/scenes/WorldSelection.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/WorldSelection.tscn")
 
 
 func _on_Setting_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/Settings Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/Settings Menu.tscn")
 
 
 func _on_Help_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/Help Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/Help Menu.tscn")
 
 
 func _on_About_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/About Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/About Menu.tscn")
 
 
 func _on_Exit_Button_pressed():
 	$Sounds/SelectSound.play()
-	global.sleep(time)
 	get_tree().quit()
 
 

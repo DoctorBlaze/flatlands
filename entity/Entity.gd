@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 enum EntityType {Mob,Player,NPC,Ambient}
 var entity_type

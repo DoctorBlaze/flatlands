@@ -29,7 +29,7 @@ var Player
 func SaveWorld():
 	var cfg = File.new()
 	var cfgStr = "{\n"
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	dir.open("res://_run/worlds/")
 	if(!dir.dir_exists(WorldName)): dir.make_dir(WorldName)
 	
@@ -52,7 +52,9 @@ func LoadWorld():
 	WorldName = global.SelectedWorld
 	var cfg = File.new()
 	cfg.open("res://_run/worlds/" + WorldName + "/config.json", cfg.READ)
-	var data = parse_json(cfg.get_as_text())
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(cfg.get_as_text())
+	var data = test_json_conv.get_data()
 	ChunkSize = data["ChunkSize"]
 	DayLength = data["DayLength"]
 	SeasonLength = data["SeasonLength"]

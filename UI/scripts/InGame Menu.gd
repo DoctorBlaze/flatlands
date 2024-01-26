@@ -23,15 +23,15 @@ func _on_Save_Game_Button_pressed():
 
 
 func _on_Setting_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/Settings Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/Settings Menu.tscn")
 
 
 func _on_Help_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/Help Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/Help Menu.tscn")
 
 
 func _on_About_Button_pressed():
-	get_tree().change_scene("res://UI/scenes/About Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/About Menu.tscn")
 
 
 func _on_Exit_Button_pressed():

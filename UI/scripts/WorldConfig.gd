@@ -25,7 +25,7 @@ func _on_CreateWorld_pressed():
 	
 	var cfg = File.new()
 	var cfgStr = "{\n"
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	dir.open("res://_run/worlds/")
 	if(!dir.dir_exists(WorldName)): dir.make_dir(WorldName)
 	
@@ -39,9 +39,9 @@ func _on_CreateWorld_pressed():
 	cfg.store_string(cfgStr)
 	cfg.close()
 	global.SelectedWorld = WorldName
-	get_tree().change_scene("res://world/World.tscn")
+	get_tree().change_scene_to_file("res://world/World.tscn")
 	
 
 
 func _on_BackButton_pressed():
-	get_tree().change_scene("res://UI/scenes/Main Menu.tscn")
+	get_tree().change_scene_to_file("res://UI/scenes/Main Menu.tscn")

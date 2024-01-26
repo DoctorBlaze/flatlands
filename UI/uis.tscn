@@ -2,10 +2,10 @@
 
 [ext_resource path="res://UI/scenes/PlayerOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/scenes/PlantCheckMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Roboto-Bold.ttf" type="FontFile" id=3]
 [ext_resource path="res://UI/scenes/researchTable.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 3 )
@@ -13,23 +13,23 @@ font_data = ExtResource( 3 )
 [node name="playerUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 
 [node name="PlayerOverlay" parent="." instance=ExtResource( 1 )]
-margin_right = 239.0
-margin_bottom = 121.0
+offset_right = 239.0
+offset_bottom = 121.0
 
 [node name="PlantCheckMenu" parent="." instance=ExtResource( 2 )]
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -505.5
-margin_top = -368.0
-margin_right = 505.5
+offset_left = -505.5
+offset_top = -368.0
+offset_right = 505.5
 mouse_default_cursor_shape = 0
 input_pass_on_modal_close_click = false
 
@@ -39,11 +39,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -106.0
-margin_top = -9.0
-margin_right = 107.0
-margin_bottom = 58.0
-custom_fonts/font = SubResource( 1 )
+offset_left = -106.0
+offset_top = -9.0
+offset_right = 107.0
+offset_bottom = 58.0
+theme_override_fonts/font = SubResource( 1 )
 text = "press \"E\" to interact"
 align = 1
 valign = 2
@@ -54,8 +54,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -507.0
-margin_top = -295.0
-margin_right = 507.0
-margin_bottom = 295.0
+offset_left = -507.0
+offset_top = -295.0
+offset_right = 507.0
+offset_bottom = 295.0
 mouse_filter = 1

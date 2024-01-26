@@ -21,13 +21,15 @@ func _physics_process(delta):
 	if(targetPosition != null) and mobWalkState == MobWalkState.walkTowards:
 		#$SlimeSprite.play("move")
 		var velocity = Vector2(targetPosition - position).normalized() * speed
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
 		if(position.distance_to(targetPosition) < allowablePosDistance):
 			mobWalkState = MobWalkState.idle
 	elif(targetPosition != null) and mobWalkState == MobWalkState.walkAround:
 		#$SlimeSprite.play("move")
 		var velocity = Vector2(targetPosition - position).normalized() * speed * 0.5
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
 		if(position.distance_to(targetPosition) < allowablePosDistance):
 			mobWalkState = MobWalkState.idle
 	else:

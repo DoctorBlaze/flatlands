@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://asset/texture/player/animations/projectile.png" type="Texture" id=1]
+[ext_resource path="res://asset/texture/player/animations/projectile.png" type="Texture2D" id=1]
 [ext_resource path="res://projectile/player_projectile.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 3 )
+size = Vector2( 3, 3 )
 
 [node name="playerProjectile" type="Area2D"]
 z_index = 2
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 

@@ -56,28 +56,29 @@ func _physics_process(delta):
 	#final speed _____________________________________________________________
 	init_animations(velocity)
 	if not global.is_paused:
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
 	
 	
 func init_animations(velocity):
-	YSort 
+	Node2D 
 	if velocity.y > 0 and not global.is_paused:
-		$AnimatedSprite.play("Go Down")
+		$AnimatedSprite2D.play("Go Down")
 		return
 	elif velocity.y < 0 and not global.is_paused:
-		$AnimatedSprite.play("Go Up")
+		$AnimatedSprite2D.play("Go Up")
 		return
 			
 	elif velocity.x > 0 and not global.is_paused:
-		$AnimatedSprite.play("Go Side")
-		$AnimatedSprite.flip_h = false
+		$AnimatedSprite2D.play("Go Side")
+		$AnimatedSprite2D.flip_h = false
 		return
 	elif velocity.x < 0 and not global.is_paused:
-		$AnimatedSprite.play("Go Side")
-		$AnimatedSprite.flip_h = true
+		$AnimatedSprite2D.play("Go Side")
+		$AnimatedSprite2D.flip_h = true
 		return
 	else: 
-		$AnimatedSprite.play("Idle")
+		$AnimatedSprite2D.play("Idle")
 		
 func _process(delta):
 	$UInode/playerUI/PlayerOverlay/HpBar.value = health

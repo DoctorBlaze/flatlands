@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxbeoulcwk7vp"]
+
+[ext_resource type="Script" path="res://ui/interactiveBook/skillTree.cs" id="1_1b2yl"]
+
+[sub_resource type="Gradient" id="Gradient_yvbg7"]
+offsets = PackedFloat32Array(0, 0.489637, 1)
+colors = PackedColorArray(1, 1, 1, 0.12549, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="skillTree" type="Panel"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1b2yl")
+
+[node name="MovableNode" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Button" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 238.0
+offset_right = 778.0
+offset_bottom = 269.0
+text = "111"
+
+[node name="Button2" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = -122.0
+offset_top = 330.0
+offset_right = -51.0
+offset_bottom = 361.0
+text = "222"
+
+[node name="Button7" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 249.0
+offset_right = 127.0
+offset_bottom = 280.0
+text = "333"
+
+[node name="Button8" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 501.0
+offset_right = 620.0
+offset_bottom = 532.0
+text = "dfsdfsdf"
+
+[node name="Button9" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 366.0
+offset_right = 1120.0
+offset_bottom = 397.0
+text = "dfsdfsdf"
+
+[node name="Button10" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 968.0
+offset_top = 35.0
+offset_right = 1039.0
+offset_bottom = 66.0
+text = "dfsdfsdf"
+
+[node name="Button3" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 713.0
+offset_right = 572.0
+offset_bottom = 744.0
+text = "dfsdfsdf"
+
+[node name="Button4" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 1182.0
+offset_top = 458.0
+offset_right = 1253.0
+offset_bottom = 489.0
+text = "dfsdfsdf444"
+
+[node name="Button5" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 562.0
+offset_top = -65.0
+offset_right = 633.0
+offset_bottom = -34.0
+text = "dfsdfsdf"
+
+[node name="Button6" type="Button" parent="MovableNode"]
+layout_mode = 0
+offset_left = 1262.0
+offset_top = 198.0
+offset_right = 1333.0
+offset_bottom = 229.0
+text = "dfsdfsdf"
+
+[node name="Line2D" type="Line2D" parent="MovableNode"]
+points = PackedVector2Array(87, 264, 586, 519)
+width = 5.0
+gradient = SubResource("Gradient_yvbg7")
