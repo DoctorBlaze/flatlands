@@ -71,7 +71,7 @@ public struct StatsBunch{
     }
 
     public void AddModifier(Modifier modifier){
-        if(modifier.addMode == true){
+        if(modifier.type == ModifierType.Add){
             switch(modifier.stat){
                 case(StatList.maxHealth): maxHealth += modifier.value; break;
                 case(StatList.regeneration): regeneration += modifier.value; break;

@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://1byj4rryxdu"]
+
+[ext_resource type="FontFile" uid="uid://83dxrlxmf7m6" path="res://fonts/Roboto-Bold.ttf" id="1_jctod"]
+[ext_resource type="Texture2D" uid="uid://d33t6sxstwahk" path="res://asset/texture/ui/health_icon.png" id="2_2dn11"]
+[ext_resource type="Texture2D" uid="uid://bensm2e8fguyj" path="res://asset/texture/ui/hunger_icon.png" id="3_81v0b"]
+
+[sub_resource type="Theme" id="1"]
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("1_jctod")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybatd"]
+bg_color = Color(0, 0, 0, 0.156863)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1s4l"]
+bg_color = Color(0.898039, 0.313726, 0.294118, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="overlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("1")
+metadata/_edit_horizontal_guides_ = [-119.0]
+
+[node name="hp" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 3.0
+offset_right = 341.0
+offset_bottom = 30.0
+theme_override_fonts/font = SubResource("4")
+theme_override_styles/background = SubResource("StyleBoxFlat_ybatd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e1s4l")
+value = 55.96
+
+[node name="TextureRect" type="TextureRect" parent="hp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -37.0
+offset_top = -3.0
+offset_right = -29.0
+offset_bottom = 5.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_2dn11")
+
+[node name="hunger" type="Label" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 53.0
+offset_right = 58.0
+offset_bottom = 72.0
+theme_override_fonts/font = SubResource("4")
+text = "10"
+
+[node name="TextureRect2" type="TextureRect" parent="hunger"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -36.0
+offset_top = -6.0
+offset_right = -28.0
+offset_bottom = 2.0
+scale = Vector2(4, 4)
+texture = ExtResource("3_81v0b")

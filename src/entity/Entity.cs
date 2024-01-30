@@ -3,22 +3,27 @@ using System;
 using Damaging;
 using System.Formats.Asn1;
 using Statistycs;
+using World;
 
 namespace Entities{
 public partial class Entity : CharacterBody2D
 {
-
-	/// <summary>
-	/// includes hitbox, animated sprite, etc
-	/// </summary>
 	protected Node2D body;
+
+	Color normalColor = new Color(1f,1f,1f,1f);
+	Color hurtColor = new Color(1f,0.5f,0.5f,1f);
+	public float hframes = 0f;
+
+	public EntityPool epool = null;
+
+
 	public string bodyPath = "";
 
 
 	//____________________________________________________________________________
 	//stats system
 	//____________________________________________________________________________
-	public float health;
+	public float health = 100f;
 	public Statistycs.StatsBunch basicStats;
 	public Statistycs.StatsBunch genericStats;
 
@@ -28,7 +33,7 @@ public partial class Entity : CharacterBody2D
 	// entity elements
 	//____________________________________________________________________________
 	protected AnimatedSprite2D sprite;
-	protected CollisionShape2D hitbox;
+	//protected CollisionShape2D hitbox;
 
 
 	/// <summary>
@@ -40,29 +45,23 @@ public partial class Entity : CharacterBody2D
 	/// <summary>
 	/// main scene that's being loaded when entity spawned
 	/// </summary>
-	public Node2D gameWorld;
+	//public Node2D gameWorld;
 	//____________________________________________________________________________
 	// loading
 	//____________________________________________________________________________
 	public void LoadBody(){
 		PackedScene ps;
+		
 
-		if(body != null) body.QueueFree();
+		//if(body != null) body.QueueFree();
 		ps = ResourceLoader.Load<PackedScene>(bodyPath);
 		if(ps == null) return;
 		body = ps.Instantiate<Node2D>();
 		if(body == null) return;
 
-		Godot.Collections.Array<Node> children = body.GetChildren();
-		
-		foreach(Node ch in children){
-			body.RemoveChild(ch);
-			AddChild(ch);
-		}
+		AddChild(body);
 
 
-		body.QueueFree();
-		
 		OnBodyLoaded();
 	}
 
@@ -70,7 +69,7 @@ public partial class Entity : CharacterBody2D
 	// movement
 	//____________________________________________________________________________
 
-	public Vector2 movementInertion;
+	public Vector2 inertion;
 
 	/// <summary>
 	/// Direction where entity walks on it's own
@@ -80,9 +79,16 @@ public partial class Entity : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = walkDir*basicStats.walkSpeed;
+		Vector2 velocity = walkDir*genericStats.walkSpeed;
 		
-		//velocity = walkDir;
+		if(sprite != null){
+		if(hframes >0f){
+			hframes-=(float)delta;
+			sprite.Modulate = hurtColor;
+		}
+		else{
+			sprite.Modulate = normalColor;
+		}}
 		
 		if(walkDir != Vector2.Zero){
 			if(walkDir.Y > 0) rState = RotationState.Front;
@@ -91,9 +97,14 @@ public partial class Entity : CharacterBody2D
 			else if(walkDir.X < 0) rState = RotationState.Left;			
 		}
 
+		if(Mathf.Abs(inertion.X) > 0.1f || Mathf.Abs(inertion.Y) > 0.1f){
+			inertion.X *=0.9f; inertion.Y *=0.9f;
+			velocity += inertion;
+		}
 		Velocity = velocity;
-		
+
 		MoveAndSlide();
+
 	}
 
 	public override void _Ready()
@@ -102,6 +113,7 @@ public partial class Entity : CharacterBody2D
 	}
 
 	public Entity(){
+		inertion = new Vector2(0f,0f);
 		BasicStatsInit();
 		CalcStats();
 	}
@@ -110,55 +122,34 @@ public partial class Entity : CharacterBody2D
 
 	public virtual void CalcStats(){
 		genericStats = basicStats;
-		//genericStats.AddModifier(new Modifier(1.0f,StatList.walkSpeed,false));
+		
 	}
 
-	public virtual DamageResult RecieveDamage(float damage, DamageType damageType, Entity owner, float[] addParams, Vector3 pos){
+	public virtual void RecieveDamage(float damage, DamageType damageType, Entity damager, Vector2 pos){
+		Vector2 dir = (Position-pos).Normalized()*1200f;
 		float resDmg = 0.0f;
-		if(damageType == DamageType.projectile){
-			if(addParams[0] >= genericStats.armor){
-				addParams[0] -= genericStats.armor;
-				resDmg = damage / genericStats.projectileResistance / genericStats.resistance;
-			}
-			else{
-				resDmg = damage / genericStats.projectileResistance * (50 + new Random().Next()%50)*0.01f / genericStats.resistance;
-			}
-		}
-		else if(damageType == DamageType.explosion){
-			resDmg = damage / genericStats.explosionResistance / genericStats.resistance;;
-		}
-		else if(damageType == DamageType.pure){
-			resDmg = damage / genericStats.resistance;
-		}
-		else{
-			resDmg = damage;
-		}
+
+		inertion = dir; hframes = 0.12f;
+		
+		resDmg = damage;
 
 		health -= resDmg;
 
-		DamageResult damageResult = new(){
-			resultDamage = resDmg,
-			target = this,
-			damagePosition = pos,
-			targetDied = false
-		};
 
-		if(health <= 0f){OnDeath();
-		damageResult.targetDied = true;}
 
-		OnDamageRecieve(damageResult);
-		owner?.OnDamageDeal(damageResult);
-		
-		return damageResult;
+		if(health <= 0f){OnDeath();}
+
+		//damager?.OnDamageDeal(damageResult);
+
 	}
 
 
 	public virtual void BasicStatsInit(){
 		basicStats.maxHealth = 100.0f;
 		basicStats.regeneration = 0.1f;
-		basicStats.walkSpeed = 16f;
+		basicStats.walkSpeed = 200f;
 		basicStats.jumpStrength = 4.0f;
-		basicStats.damage = 1.0f;
+		basicStats.damage = 5.0f;
 		basicStats.projectileDamage = 25.0f;
 		basicStats.projectilePierce = 1.0f;
 		basicStats.projectileSpeed = 1.0f;
@@ -180,8 +171,8 @@ public partial class Entity : CharacterBody2D
 	//entity events
 	//____________________________________________________________________________
 	protected virtual void OnBodyLoaded(){
-		hitbox = GetNode<CollisionShape2D>("hitbox");
-		sprite = GetNode<AnimatedSprite2D>("sprite");
+		//hitbox = body.GetNode<CollisionShape2D>("hitbox");
+		sprite = body.GetNode<AnimatedSprite2D>("sprite");
 	}
 
 	public virtual void OnSpawn(){

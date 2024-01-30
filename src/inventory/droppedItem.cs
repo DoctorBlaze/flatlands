@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using invSys;
+using Inventory;
 using Entities;
 
-namespace invSys{
+namespace Inventory{
 
 /// <summary>
 /// item, placed in the world. has gravity and maybe collsison
@@ -40,7 +40,7 @@ public partial class DroppedItem : RigidBody3D
 		AddChild(itemHitbox);
 
 		icon = new Sprite3D();
-		icon.Texture = ResourceLoader.Load(containedItem.item.icon) as Texture2D;
+		icon.Texture = containedItem.item.icon;
 		AddChild(icon);
 	}
 
@@ -66,7 +66,7 @@ public partial class DroppedItem : RigidBody3D
 		AddChild(itemHitbox);
 
 		icon = new Sprite3D();
-		icon.Texture = ResourceLoader.Load(containedItem.item.icon) as Texture2D;
+		icon.Texture = containedItem.item.icon;
 		AddChild(icon);
 	}
 

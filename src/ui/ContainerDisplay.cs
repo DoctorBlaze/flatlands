@@ -8,7 +8,7 @@ public partial class ContainerDisplay : Control
 {
 	//fgdg
 	public SlotPanel[] slotPanels;
-	public invSys.ItemContainer contRef;
+	public Inventory.ItemContainer contRef;
 	public GUI.PlayerGUI guiOwner; //not the slot owner
 	public Panel mainPanel;
 

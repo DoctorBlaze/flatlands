@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://osl62sx8dgyt"]
+
+[ext_resource type="Texture2D" uid="uid://be41g6pw2gdj8" path="res://asset/texture/entity/blue_slime/jump_1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtl6fds0oda6p" path="res://asset/texture/entity/blue_slime/idle_0.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b3g5k7wq5acgn" path="res://asset/texture/entity/blue_slime/idle_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ckt3cnl5rb13h" path="res://asset/texture/entity/blue_slime/jump_0.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7y37q"]
+
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"move",
+"speed": 4.0
+}]
+
+[node name="BlueSlime" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_7y37q")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("3")
+frame_progress = 0.830956

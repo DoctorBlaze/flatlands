@@ -2,32 +2,35 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using GUI;
-using invSys;
+using Inventory;
 using Entities;
 using System.Net.Http;
 
 namespace GUI
 {
 
-public partial class PlayerGUI : Control
+public partial class PlayerGUI : CanvasLayer
 {
+	private const string overlayPath = "res://UI/scenes/overlay.tscn";
+	private const string inventoryPath = "res://UI/scenes/containerDisplay.tscn";
+	private const string dragPath = "res://UI/scenes/dragPanel.tscn";
+
+
 	public Player guiOwner;
 
-	private Panel overlay;
-	private SkillTree skilltree=null;
-	private ProgressBar hpBar;
-	private Label hpLabel;
+	private Control overlay;
 
-	private Button openBookBtn;
+	private ProgressBar hpBar;
+	private Label hungerLabel;
+
 
 	public List<ContainerDisplay> displayedConts;
 	public bool contsOpened = false;
 	//temportary slot with item on cursor
-	public invSys.ItemInstance dragItem;
+	public Inventory.ItemInstance dragItem;
 	public TextItemDisplay textItemDisplay;
 	public Control tmpDragElem;
 
-	public Label pickupLabel;
 
 	public PlayerGUI(Player pl){
 		guiOwner = pl;
@@ -41,24 +44,23 @@ public partial class PlayerGUI : Control
 		/// CHANGE THAT SHIT!
 		displayedConts = new();
 		
-		PackedScene overlayRes = ResourceLoader.Load<PackedScene>("res://ui/playerOverlay.tscn");
+		PackedScene overlayRes = ResourceLoader.Load<PackedScene>(overlayPath);
 		
-		overlay = overlayRes.Instantiate<Panel>();
+		overlay = overlayRes.Instantiate<Control>();
 		
-		guiOwner.AddChild(overlay);
+		AddChild(overlay);
 		
 		
-		hpBar = overlay.GetNode<Panel>("statsPanel").GetNode<ProgressBar>("hpBar");
-		openBookBtn = overlay.GetNode<Button>("openBook");
-		hpLabel = hpBar.GetNode<Label>("hpLabel");
-
-		pickupLabel = overlay.GetNode<Label>("pickUpLabel");
+		hpBar = overlay.GetNode<ProgressBar>("hp");
+		hungerLabel = overlay.GetNode<Label>("hunger");
 	}
 
 	public override void _Process(double delta)
 	{
-		hpBar.Value = guiOwner.health / guiOwner.genericStats.maxHealth; 
-		hpLabel.Text =  guiOwner.health + "/" + guiOwner.genericStats.maxHealth; 
+		hpBar.MaxValue = guiOwner.genericStats.maxHealth;
+		hpBar.Value = guiOwner.health;
+
+		hungerLabel.Text = "none"; 
 	}
 
 	public override void _Input(InputEvent @event)
@@ -73,27 +75,8 @@ public partial class PlayerGUI : Control
 			}
 		}
 		else if (Input.IsActionJustPressed("openInventory")){
-				openCloseGUI(guiOwner.inventory,true);
+			openCloseGUI(guiOwner.inventory,true);
 		}
-		else if (@event is InputEventMouseButton){
-			if(openBookBtn.ButtonPressed){
-				OpenSkillTree();
-			}
-		}
-
-	}
-
-	public override void _UnhandledInput(InputEvent @event)
-	{
-			
-			/*if (Input.IsActionJustPressed("openArtifactBag")){
-				if(!contsOpened) openCloseGUI(guiOwner.inventory,false);
-				openCloseGUI(guiOwner.artifactsBag,false);
-			}
-			if (Input.IsActionJustPressed("openAmmoBag")){
-				if(!contsOpened) openCloseGUI(guiOwner.inventory,false);
-				openCloseGUI(guiOwner.ammoBag,false);
-			}*/
 	}
 
 
@@ -104,7 +87,7 @@ public partial class PlayerGUI : Control
 		//check this GUI was already opened
 		foreach(ContainerDisplay cd in displayedConts) if(cd.contRef == containerToCheck) return;
 
-		Panel contGUI = ResourceLoader.Load<PackedScene>("res://ui/containerDisplay.tscn").Instantiate<Panel>();
+		Panel contGUI = ResourceLoader.Load<PackedScene>(inventoryPath).Instantiate<Panel>();
 		GUI.ContainerDisplay containerDisplay = new(contGUI)
 			{
 				contRef = containerToCheck,
@@ -122,14 +105,14 @@ public partial class PlayerGUI : Control
 		
 		if(dragItem == null) return;
 
-		Panel dragItemPanel = ResourceLoader.Load<PackedScene>("res://ui/dragPanel.tscn").Instantiate<Panel>();
+		Panel dragItemPanel = ResourceLoader.Load<PackedScene>(dragPath).Instantiate<Panel>();
 		dragItemPanel.Name = "dragItemPanel";
 
-		dragItemPanel.GetNode<TextureRect>("itemIcon").Texture = ResourceLoader.Load<Texture2D>(dragItem.item.icon);
-		if(dragItem is invSys.IInstance.IItemCount count){
+		dragItemPanel.GetNode<TextureRect>("itemIcon").Texture = dragItem.item.icon;
+		if(dragItem is Inventory.IInstance.IItemCount count){
 			dragItemPanel.GetNode<Label>("resNum").Text = "+"+count.num;
 		}
-		dragItemPanel.GetNode<TextureRect>("itemIcon").Texture = ResourceLoader.Load<Texture2D>(dragItem.item.icon);
+		dragItemPanel.GetNode<TextureRect>("itemIcon").Texture = dragItem.item.icon;
 		tmpDragElem = dragItemPanel;
 		AddChild(tmpDragElem);
 		
@@ -173,20 +156,7 @@ public partial class PlayerGUI : Control
 		guiOwner.SelectItem(index);
 	}
 
-	public void OpenSkillTree(){
-		if(skilltree == null){
-			PackedScene STRes = ResourceLoader.Load<PackedScene>("res://ui/interactiveBook/skillTree.tscn");
-			if(STRes == null) return;
-			skilltree = STRes.Instantiate<SkillTree>();
-			guiOwner.AddChild(skilltree);
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
-		else{
-			skilltree.QueueFree();
-			skilltree = null;
-			Input.MouseMode = Input.MouseModeEnum.Captured;
-		}
-	}
+
 
 }
 

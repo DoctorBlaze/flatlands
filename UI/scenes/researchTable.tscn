@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3]
 
-[ext_resource path="res://asset/texture/ui/research_table_ui.png" type="Texture2D" id=1]
-[ext_resource path="res://fonts/Roboto-Bold.ttf" type="FontFile" id=2]
-[ext_resource path="res://UI/scripts/researchTable.gd" type="Script" id=3]
-[ext_resource path="res://fonts/Roboto-Regular.ttf" type="FontFile" id=4]
-[ext_resource path="res://fonts/Merriweather-Regular.ttf" type="FontFile" id=5]
+[ext_resource type="Texture2D" uid="uid://cgecnlojvemdu" path="res://asset/texture/ui/research_table_ui.png" id="1"]
+[ext_resource type="FontFile" uid="uid://83dxrlxmf7m6" path="res://fonts/Roboto-Bold.ttf" id="2"]
+[ext_resource type="Script" path="res://UI/scripts/researchTable.gd" id="3"]
+[ext_resource type="FontFile" uid="uid://c8p1lbnawrwb3" path="res://fonts/Roboto-Regular.ttf" id="4"]
+[ext_resource type="FontFile" uid="uid://cc5aimvxyqo31" path="res://fonts/Merriweather-Regular.ttf" id="5"]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )

@@ -5,7 +5,7 @@ using Statistycs;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using GUI;
-using invSys;
+using Inventory;
 using System.Linq;
 
 
@@ -13,6 +13,7 @@ namespace Entities{
 public partial class Player : Entity
 {	
 
+	GUI.PlayerGUI gui;
 
 	public List<DroppedItem> itemsNearby;
 
@@ -24,27 +25,35 @@ public partial class Player : Entity
 	float dashMaxCooldown=4;
 	float dashMaxBoost=4;
 
+	float attacking = 0f;
+
 	//____________________________________________________________________________
 	// entity elements
 	//____________________________________________________________________________
 	protected AnimatedSprite2D dashSprite;
+	protected Sprite2D heldSprite;
+	protected AnimatedSprite2D slashSprite;
 	public Camera2D cam;
 
 
+	public Area2D interactArea;
+
+	
 
 	//____________________________________________________________________________
 	/// <summary> main inventory </summary>
-	public invSys.ItemContainer inventory;
+	public Inventory.ItemContainer inventory;
 
 	/// <summary> index oof item selected </summary>
 	public int selectedItem;
 
 	//public PlayerGUI gui;
-	private string giuPath = "";
+	private string guiPath = "";
 
 
 	public Player(){
 		bodyPath = "res://scenes/player/MainCharacter.tscn";
+		inventory = new Inventory.ItemContainer(50,"Inventory");
 	}
 
 	//____________________________________________________________________________
@@ -56,15 +65,17 @@ public partial class Player : Entity
 
 		LoadBody();
 
-		//gui = new PlayerGUI(this);
-		//AddChild(gui);
+		
+		itemsNearby = new List<DroppedItem>();
+
+		gui = new PlayerGUI(this);
+		AddChild(gui);
 
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 
 
-		inventory = new invSys.ItemContainer(40,"Inventory");
-		itemsNearby = new List<DroppedItem>();
+		
 
 	}
 	//____________________________________________________________________________
@@ -114,6 +125,14 @@ public partial class Player : Entity
 					dashCooldown = dashMaxCooldown;
 					dashSprite.Play("dash");
 				}
+				if (Input.IsActionJustPressed("attack") && (attacking < 0f)){
+					//GD.Print("a");
+					if(inventory.items[selectedItem] != null) {
+						SlashAnimation();
+						attacking = 0.25f;
+					}
+				}
+
 			}
 
 			
@@ -131,13 +150,18 @@ public partial class Player : Entity
 	{
 		//if(Input.MouseMode == Input.MouseModeEnum.Visible) return;
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		walkDir = inputDir.Normalized()*basicStats.walkSpeed;
+		walkDir = inputDir.Normalized()/(1f+attacking*attacking*10f);
 		if(dashBoost > 0){
 			walkDir *= (1+(dashBoost));
 			dashBoost -= (float)delta*8f; 
 		}  
 		base._PhysicsProcess(delta);
-		PlayAnimation();
+		if(attacking<0f) PlayAnimation();
+		else{
+			attacking -= (float)delta;
+			SwingWeapon();
+		}
+		LocateInteractArea();
 
 		if(dashCooldown > 0) dashCooldown -= (float)delta;
 
@@ -146,11 +170,20 @@ public partial class Player : Entity
 	//____________________________________________________________________________
 	//player stats
 	//____________________________________________________________________________
-	public override void BasicStatsInit(){
-		base.BasicStatsInit();
-		basicStats.regeneration = 1.0f;
-		basicStats.critChance = 0.1f;
-		basicStats.critDamage = 1.25f;
+	public override void CalcStats(){
+		//base.BasicStatsInit();
+		genericStats = basicStats;
+		GD.Print("CalcStats()");
+		if(inventory == null)  {GD.Print("no inventory."); return;}
+
+		if(inventory.items[selectedItem]?.item == null) {GD.Print("no item selected."); return;}
+
+		if(inventory.items[selectedItem].item is IItemModifier im){
+			GD.Print("modifier applied");
+			foreach(Modifier m in im.modifiers){
+				genericStats.AddModifier(m);
+			}
+		}
 	}
 
 
@@ -220,18 +253,46 @@ public partial class Player : Entity
 
 	public void SelectItem(int index){
 		selectedItem = index;
-		GD.Print(inventory.items[selectedItem]?.item.ToString());
+		if(inventory.items[selectedItem] == null){
+			heldSprite.Visible = false;
+			return;
+		}
+		CalcStats();
+		heldSprite.Texture = inventory.items[selectedItem].item.icon;
+
+		//GD.Print(inventory.items[selectedItem]?.item.ToString());
 	}
 
-    //____________________________________________________________________________
-    //Load all the components
-    //____________________________________________________________________________
-    protected override void OnBodyLoaded()
-    {
+	//____________________________________________________________________________
+	//Load all the components
+	//____________________________________________________________________________
+	protected override void OnBodyLoaded()
+	{
 		base.OnBodyLoaded();
-		cam = GetNode<Camera2D>("camera");
-		dashSprite = GetNode<AnimatedSprite2D>("dashSprite");
-    }
+		cam = body.GetNode<Camera2D>("camera");
+		heldSprite = sprite.GetNode<Sprite2D>("held");
+		slashSprite = sprite.GetNode<AnimatedSprite2D>("slash");
+		dashSprite = body.GetNode<AnimatedSprite2D>("dashSprite");
+		interactArea = body.GetNode<Area2D>("InteractArea");
+	}
+
+	private void LocateInteractArea(){
+		switch(rState){
+			case RotationState.Front:
+				interactArea.Position = new Vector2(0,20);
+				break;
+			case RotationState.Back:
+				interactArea.Position = new Vector2(0,-60);
+				break;
+			case RotationState.Right:
+				interactArea.Position = new Vector2(50,0);
+				break;
+			case RotationState.Left:
+				interactArea.Position = new Vector2(-50,0);
+				break;
+			default: break;
+		}
+	}
 
 	//____________________________________________________________________________
 	//animation
@@ -240,6 +301,8 @@ public partial class Player : Entity
 		string animName;
 		if(walkDir == Vector2.Zero) animName = "Idle ";
 		else animName = "Go ";
+
+		heldSprite.Visible = false;
 
 		switch(rState){
 			case RotationState.Front:
@@ -263,6 +326,113 @@ public partial class Player : Entity
 
 		sprite.Play(animName);
 
+	}
+
+	void SlashAnimation(){
+		List<Node2D> arr = interactArea.GetOverlappingBodies().ToList();
+		for(int i = 0; i < arr.Count(); ++i){
+			if(arr[i] is Entity ent && arr[i] != this){
+				ent.RecieveDamage(genericStats.damage,DamageType.melee,this,this.Position);
+			}
+		}
+
+		switch(rState){
+			case RotationState.Front:
+				inertion.Y += 100;
+				slashSprite.ZIndex = 1;
+				slashSprite.Play("front");
+				break;
+			case RotationState.Back:
+				inertion.Y -= 100;
+				slashSprite.ZIndex = -1;
+				slashSprite.Play("back");
+				break;
+			case RotationState.Right:
+				inertion.X += 100;
+				slashSprite.ZIndex = 1;
+				slashSprite.Play("right");
+				break;
+			case RotationState.Left:
+				inertion.X -= 100;
+				slashSprite.ZIndex = 1;
+				slashSprite.Play("left");
+				break;
+			default: break;
+		}
+	}
+
+	public void SwingWeapon(){
+		heldSprite.Visible = true;
+	
+		if(rState == RotationState.Right){
+			heldSprite.FlipH = false;
+			heldSprite.FlipV = false;
+			if(attacking>0.125f){
+				heldSprite.Rotation = -Mathf.Pi*0.5f;
+				heldSprite.Position = new Vector2(0,-10);
+			}
+			else{
+				heldSprite.Rotation = Mathf.Pi*0.5f;
+				heldSprite.Position = new Vector2(10,10);
+			}
+			sprite.Play("Attack Side");
+		}
+		else if(rState == RotationState.Left){
+			heldSprite.FlipH = false;
+			heldSprite.FlipV = true;
+			if(attacking>0.125f){
+				heldSprite.Rotation = -Mathf.Pi*0.5f;
+				heldSprite.Position = new Vector2(0,-10);
+			}
+			else{
+				heldSprite.Rotation = Mathf.Pi*0.5f;
+				heldSprite.Position = new Vector2(-10,10);
+			}
+			sprite.Play("Attack Side");
+		}
+		if(rState == RotationState.Front){
+			heldSprite.FlipH = false;
+			heldSprite.FlipV = true;
+			if(attacking>0.2f){
+				heldSprite.Rotation = -Mathf.Pi*0.5f;
+				heldSprite.ZIndex = -1;
+				heldSprite.Position = new Vector2(-2,-10);
+			}
+			else if(attacking>0.1f){
+				heldSprite.Rotation = Mathf.Pi*0.5f;
+				heldSprite.ZIndex = 0;
+				heldSprite.Position = new Vector2(-8,10);
+			}
+			else{
+				heldSprite.Rotation = 0f;
+				heldSprite.ZIndex = 0;
+				heldSprite.Position = new Vector2(8,10);
+			}
+			sprite.Play("Attack Front");
+		}
+		if(rState == RotationState.Back){
+			heldSprite.FlipH = false;
+			heldSprite.FlipV = false;
+			if(attacking>0.2f){
+				heldSprite.Rotation = -Mathf.Pi*0.5f;
+				heldSprite.FlipH = false;
+				heldSprite.ZIndex = 0;
+				heldSprite.Position = new Vector2(2,-10);
+			}
+			else if(attacking>0.1f){
+				heldSprite.Rotation = 0;
+				heldSprite.FlipH = false;
+				heldSprite.ZIndex = -2;
+				heldSprite.Position = new Vector2(8,-2);
+			}
+			else{
+				heldSprite.Rotation = 0f;
+				heldSprite.FlipH = true;
+				heldSprite.ZIndex = -2;
+				heldSprite.Position = new Vector2(-8,-2);
+			}
+			sprite.Play("Attack Back");
+		}
 	}
 
 }

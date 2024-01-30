@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource path="res://asset/texture/ui/plant_check_ui.png" type="Texture2D" id=1]
-[ext_resource path="res://fonts/Merriweather-Regular.ttf" type="FontFile" id=2]
-[ext_resource path="res://UI/scripts/PlantCheckMenu.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://gd7rmdm1v3w3" path="res://asset/texture/ui/plant_check_ui.png" id="1"]
+[ext_resource type="FontFile" uid="uid://cc5aimvxyqo31" path="res://fonts/Merriweather-Regular.ttf" id="2"]
+[ext_resource type="Script" path="res://UI/scripts/PlantCheckMenu.gd" id="3"]
 
 [sub_resource type="FontFile" id=1]
 size = 28

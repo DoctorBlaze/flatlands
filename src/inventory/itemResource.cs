@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using invSys;
+using Inventory;
 
 
-namespace invSys{
+namespace Inventory{
 /// <summary>
 /// resource is a stackable item
 /// </summary>

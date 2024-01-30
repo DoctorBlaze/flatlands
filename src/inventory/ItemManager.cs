@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using Godot;
 
-namespace invSys{
+namespace Inventory{
 
 public sealed class ItemManager{
 	private static readonly object lockObject = new object();
@@ -65,7 +65,8 @@ public sealed class ItemManager{
 	}
 
 	private void RegisterAll(){
-		//RegisterItem(new ItemList.NorstmetalliteShard());
+		RegisterItem(new Items.EmberwoodFlower());
+		RegisterItem(new Items.BambooTanto());
 	}
 
 }
@@ -79,7 +80,8 @@ public enum EItem{
 	/// items with this ID will not be added in Items singletone list
 	/// </summary>
 	_noID,
-	NorstmetalliteShard
+	EmberwoodFlower,
+	BambooTanto,
 
 }
 

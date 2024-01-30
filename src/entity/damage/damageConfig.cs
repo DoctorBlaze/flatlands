@@ -18,7 +18,7 @@ public struct DamageConfig{
 public struct DamageResult{
     public float resultDamage;
     public Entity target;
-    public Vector3 damagePosition; 
+    public Vector2 damagePosition; 
 
     public bool targetDied;
 }

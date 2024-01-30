@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using invSys.IInstance;
+using Inventory.IInstance;
 using Entities;
 
-namespace invSys{
+namespace Inventory{
 
 
 /// <summary>

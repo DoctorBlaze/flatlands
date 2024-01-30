@@ -23,25 +23,28 @@ public struct Modifier{
     /// if true, stat will be added;
     /// else it will multiply the result
     /// </summary>
-    public bool addMode;
+    public ModifierType type;
     public StatList stat;
 
 
-    public Modifier(StatList stat_, bool addMode_){
+    public Modifier(StatList stat_, ModifierType type_){
         stat = stat_;
-        addMode = addMode_;
+        type = type_;
 
-        if(addMode) value = 0;
+        if(type == ModifierType.Add) value = 0;
         else value = 1;
     }
 
-    public Modifier(float value_ ,StatList stat_, bool addMode_){
+    public Modifier(float value_ ,StatList stat_, ModifierType type_){
         stat = stat_;
-        addMode = addMode_;
+        type = type_;
         value = value_;
     }
 }
 
-
+public enum ModifierType{
+    Add,
+    Mul
+}
 
 }

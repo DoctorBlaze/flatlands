@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-namespace invSys{
+namespace Inventory{
 
 
 
@@ -22,8 +22,8 @@ public class Item
     public string[] description;
 
     //item visuals
-    public string icon;
-
+    //public string icon;
+    public Texture2D icon;
     /// <summary>
     /// scene with item
     /// </summary>

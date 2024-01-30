@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using invSys;
+using Inventory;
 using System.Collections.Generic;
 
-namespace invSys{
+namespace Inventory{
 
 /// <summary>
 /// item container is a list of items with auto-add function. Containers are used for backpacks and chests.

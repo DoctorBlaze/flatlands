@@ -44,7 +44,7 @@ public struct AttackStatsBunch{
     }
 
     public void AddModifier(Modifier modifier){
-        if(modifier.addMode == true){
+        if(modifier.type == ModifierType.Add){
             switch(modifier.stat){
                 case(StatList.damage): damage += modifier.value; break;
                 case(StatList.projectileDamage): projectileDamage += modifier.value; break;

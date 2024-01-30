@@ -1,6 +1,6 @@
 using Godot;
 
-namespace invSys{
+namespace Inventory{
 
 /// <summary>
 /// one loot slot; 

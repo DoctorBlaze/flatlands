@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-namespace invSys{
+namespace Inventory{
 namespace IInstance{
 
 public interface IItemCount{
